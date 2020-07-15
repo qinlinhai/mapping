@@ -16,13 +16,5 @@ public class AuditService extends BaseService<Audit>{
     private AuditMapper auditMapper;
 
 
-    @Override
-    protected Mapper getMapper() {
-        super.mapper=auditMapper;
-        return auditMapper;
-    }
 
-    public List<Audit> select(){
-        return getMapper().selectAll();
-    }
 }

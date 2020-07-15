@@ -1,10 +1,14 @@
 package com.qwz.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "t_resource")
-public class Resource {
+public class Resource implements Serializable {
     /**
      * 编号
      */
@@ -53,12 +57,16 @@ public class Resource {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "create_time")
     private Date createTime;
 
     /**
      * 修改时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "modify_time")
     private Date modifyTime;
 
