@@ -2,6 +2,8 @@ package com.qwz.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.qwz.base.BaseController;
+import com.qwz.base.BaseService;
+import com.qwz.base.CommonController;
 import com.qwz.base.ResultData;
 import com.qwz.model.Audit;
 import com.qwz.model.MappingProject;
@@ -17,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class MappingProjectController extends BaseController {
+public class MappingProjectController extends CommonController<MappingProject> {
     @Autowired
     private MappingProjectService mappingProjectService;
 
@@ -99,5 +101,10 @@ public class MappingProjectController extends BaseController {
         }else{
             return super.selectFailed("查询项目类型数据失败");
         }
+    }
+
+    @Override
+    public BaseService getBaseService() {
+        return null;
     }
 }

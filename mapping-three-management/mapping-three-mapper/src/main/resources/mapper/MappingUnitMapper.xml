@@ -56,4 +56,30 @@
     <result column="unit_intro" property="unitIntro" jdbcType="LONGVARCHAR" />
     <result column="coordinate" property="coordinate" jdbcType="LONGVARCHAR" />
   </resultMap>
+
+  <select id="selectUnitByType" resultType="map">
+    select count(qualification_level),qualification_level from t_mapping_unit where 1=1
+    <if test="unitArea == '本地单位'.toString()">
+      and owned_district  in ('江城区','阳春市','阳东区','阳西县')
+    </if>
+    <if test="unitArea == '外地单位'.toString()">
+      and owned_district  not in ('江城区','阳春市','阳东区','阳西县')
+    </if>
+    GROUP BY qualification_level
+  </select>
+
+
+  <select id="selectTechPersonByType" resultType="map">
+    select count(*),mn.qualification_level,t.major_type from t_mapping_unit mn  join t_technicist t on mn.user_id=t.user_id
+    <if test="unitArea == '本地单位'.toString()">
+      and owned_district  in ('江城区','阳春市','阳东区','阳西县')
+    </if>
+    <if test="unitArea == '外地单位'.toString()">
+      and owned_district  not in ('江城区','阳春市','阳东区','阳西县')
+    </if>
+    GROUP BY mn.qualification_level,t.major_type
+  </select>
+
+
+
 </mapper>

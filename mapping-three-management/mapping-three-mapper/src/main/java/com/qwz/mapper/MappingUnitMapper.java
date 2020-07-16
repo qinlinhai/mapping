@@ -35,4 +35,28 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
     Integer selectSpecialCount(@Param("userId") Integer userId);
     @Select("select count(*) from t_mapping_project where user_id=#{userId}")
     Integer selectProjectCount(@Param("userId") Integer userId);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 人员设备汇总统计
+     **/
+
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 查询 资质等级查询单位数量
+     **/
+
+    List<Map> selectUnitByType(String unitArea);
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 查询 根据资质等级查询技术人员数量
+     **/
+    List<Map> selectTechPersonByType(String unitArea);
+
 }

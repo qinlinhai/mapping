@@ -1,6 +1,8 @@
 package com.qwz.controller;
 
 import com.qwz.base.BaseController;
+import com.qwz.base.BaseService;
+import com.qwz.base.CommonController;
 import com.qwz.base.ResultData;
 import com.qwz.model.Audit;
 import com.qwz.model.MappingProject;
@@ -10,12 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class AuditController extends BaseController{
+public class AuditController extends CommonController<Audit> {
 
     @Autowired
     private AuditService auditService;
     @Autowired
     private MappingProjectService mappingProjectService;
+    @Override
+    public BaseService<Audit> getBaseService() {
+        return null;
+    }
     /**
      * @author  qlh
      * @date   2020/7/16

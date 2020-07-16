@@ -62,4 +62,13 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
         maps.add(special);
         return maps;
     }
+
+    public List<Map> selectUnitByType(String unitArea){
+        List<Map> maps = mappingUnitMapper.selectUnitByType(unitArea);
+        if(maps!=null && maps.size()>0){
+            return maps;
+        }else{
+            return null;
+        }
+    }
 }
