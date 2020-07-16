@@ -83,5 +83,11 @@
     </if>
   </select>
 
-
+<select id="selectAdm" resultMap="BaseResultMap">
+    SELECT id,project_type,project_name,project_leader,start_date,end_date,acceptance_department,project_amount,schedule from t_mapping_project
+    WHERE user_id=#{userid}
+  <if test="projectType!=null and projectType!= ''">
+    and project_type like '%${projectType}%'
+  </if>
+</select>
 </mapper>

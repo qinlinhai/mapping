@@ -140,7 +140,7 @@ public abstract class BaseService<T> {
      **/
 
     public PageInfo<T> selectPageInfoByFiled(Integer pageNumber,Integer pageSize,Sqls where,String orderByFiled,String orderWord,String...fields){
-        return new PageInfo<>(selectByFileds(pageNumber,pageSize,where,orderByFiled,orderWord,fields));
+        return new PageInfo<T>(selectByFileds(pageNumber,pageSize,where,orderByFiled,orderWord,fields));
     }
     /**
      * @author  qlh
@@ -161,7 +161,7 @@ public abstract class BaseService<T> {
     public PageInfo selectPageList(T t,Integer pageNumber,Integer pageSize){
         PageHelper.startPage(pageNumber,pageSize);
         List<T> select = mapper.select(t);
-        PageInfo<T> tPageInfo = new PageInfo<>(select);
+        PageInfo<T> tPageInfo = new PageInfo<T>(select);
         return tPageInfo;
     }
     /**
