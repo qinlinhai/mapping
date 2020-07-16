@@ -172,6 +172,20 @@ public ResultData addSuccess(String msg){
     resultData.setMsg(msg);
     return resultData;
 }
+
+    /**
+     * @Description: 添加成功，返回数据信息
+     * @Author: Bing
+     * @Date: 2020/7/16 9:21
+     **/
+    public ResultData addSuccess(Object data){
+        ResultData resultData=new ResultData();
+        resultData.setCode(ADD_SUCCESS.getCode());
+        resultData.setMsg(ADD_SUCCESS.getMsg());
+        resultData.setData(data);
+        return resultData;
+    }
+
 /**
  * @author  qlh
  * @date   2020/7/9
@@ -251,6 +265,20 @@ public ResultData deleteSuccess(String msg){
     resultData.setMsg(msg);
     return resultData;
 }
+
+    /**
+     * @Description: 删除成功，返回数据信息
+     * @Author: Bing
+     * @Date: 2020/7/16 9:20
+     **/
+    public ResultData deleteSuccess(Object data){
+        ResultData resultData=new ResultData();
+        resultData.setCode(DELETE_SUCCESS.getCode());
+        resultData.setMsg(DELETE_SUCCESS.getMsg());
+        resultData.setData(data);
+        return resultData;
+    }
+
 /**
  * @author  qlh
  * @date   2020/7/9
@@ -426,6 +454,19 @@ public ResultData deleteDataNoExist(String msg){
     }
 
     /**
+     * @Description: 修改成功，返回数据信息
+     * @Author: Bing
+     * @Date: 2020/7/16 9:19
+     **/
+    protected ResultData updateSuccess(Object data){
+        ResultData resultData = new ResultData();
+        resultData.setCode(UPDATE_SUCCESS.getCode());
+        resultData.setMsg(UPDATE_SUCCESS.getMsg());
+        resultData.setData(data);
+        return resultData;
+    }
+
+    /**
      * @Description: 修改失败
      * @Author: Bing
      * @Date: 2020/7/9 15:46
@@ -544,6 +585,20 @@ public ResultData deleteDataNoExist(String msg){
         resultData.setMsg(msg);
         return resultData;
     }
+
+    /**
+     * @Description: 查询成功，返回数据信息
+     * @Author: Bing
+     * @Date: 2020/7/9 15:54
+     **/
+    protected ResultData selectSuccess(Object data){
+        ResultData resultData = new ResultData();
+        resultData.setCode(SELECT_SUCCESS.getCode());
+        resultData.setMsg(SELECT_SUCCESS.getMsg());
+        resultData.setData(data);
+        return resultData;
+    }
+
     /**
      * @author  qlh
      * @date   2020/7/16

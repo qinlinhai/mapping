@@ -10,6 +10,7 @@ import com.qwz.service.MappingUnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -85,6 +86,35 @@ public class MappingUnitController extends CommonController<MappingUnit> {
         }
     }
 
+    /**
+     * @Description: 查询白名单
+     * @Author: Bing
+     * @Date: 2020/7/16 11:46
+     **/
+    @PostMapping("/selectWhiteUnit")
+    public ResultData selectWhiteUnit(@RequestParam HashMap hashMap){
+        PageInfo pageInfo = mappingUnitService.selectWhiteUnit(hashMap);
+        if (null != pageInfo && !"".equals(pageInfo)){
+            return super.selectSuccess(pageInfo);
+        }else {
+            return super.selectFailed();
+        }
+    }
+
+    /**
+     * @Description: 查询黑名单
+     * @Author: Bing
+     * @Date: 2020/7/16 11:46
+     **/
+    @PostMapping("/selectBlackUnit")
+    public ResultData selectBlackUnit(@RequestParam HashMap hashMap){
+        PageInfo pageInfo = mappingUnitService.selectBlackUnit(hashMap);
+        if (null != pageInfo && !"".equals(pageInfo)){
+            return super.selectSuccess(pageInfo);
+        }else {
+            return super.selectFailed();
+        }
+    }
 
     @Override
     public BaseService<MappingUnit> getBaseService() {

@@ -66,4 +66,18 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
      * 查询 根据资质等级查询设备数量
      **/
     List<Map> selectEquipmentByType(String unitArea);
+
+    /**
+     * @Description: 查询白名单
+     * @Author: Bing
+     * @Date: 2020/7/16 11:35
+     **/
+    List<MappingUnit> selectwhiteUnit();
+
+    /**
+     * @Description: 查询黑名单
+     * @Author: Bing
+     * @Date: 2020/7/16 11:38
+     **/
+    List<MappingUnit> selectBlackUnit();
 }

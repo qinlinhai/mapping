@@ -10,8 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mapping-three-consumer-management</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mapping-three-consumer-backup</module>
+    </modules>
 
-<dependencies>
+    <dependencies>
     <dependency>
         <groupId>com.aaa</groupId>
         <artifactId>mapping-three-api</artifactId>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qwz.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.qwz.model.User">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="dept_id" jdbcType="BIGINT" property="deptId" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="status" jdbcType="CHAR" property="status" />
+        <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+        <result column="modify_time" jdbcType="VARCHAR" property="modifyTime" />
+        <result column="last_login_time" jdbcType="VARCHAR" property="lastLoginTime" />
+        <result column="ssex" jdbcType="CHAR" property="ssex" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+        <result column="type" jdbcType="CHAR" property="type" />
+        <result column="token" jdbcType="VARCHAR" property="token" />
+    </resultMap>
+</mapper>

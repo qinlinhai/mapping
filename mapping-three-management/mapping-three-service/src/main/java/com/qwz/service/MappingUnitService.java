@@ -42,7 +42,7 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
     public PageInfo selectAll(Integer currentPage,Integer pageSize){
         PageHelper.startPage(currentPage,pageSize);
         List<MappingUnit> mappingUnits = mappingUnitMapper.selectAll();
-        PageInfo<MappingUnit> mappingUnitPageInfo = new PageInfo<>(mappingUnits);
+        PageInfo<MappingUnit> mappingUnitPageInfo = new PageInfo<MappingUnit>(mappingUnits);
         if(mappingUnitPageInfo!=null){
             return mappingUnitPageInfo;
         }else{
@@ -55,9 +55,9 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
         List<Map> maps = mappingUnitMapper.selectUnitTech(userId);
         Integer integer = mappingUnitMapper.selectProjectCount(userId);
         Integer integer1 = mappingUnitMapper.selectSpecialCount(userId);
-        Map<Object, Object> project = new HashMap<>();
+        Map<Object, Object> project = new HashMap<Object, Object>();
         project.put("projectCount",integer);
-        Map<Object, Object> special = new HashMap<>();
+        Map<Object, Object> special = new HashMap<Object, Object>();
         special.put("specialCount",integer1);
         maps.add(project);
         maps.add(special);
@@ -68,10 +68,10 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
         List<Map> list1 = mappingUnitMapper.selectUnitByType(unitArea);
         List<Map> list2 = mappingUnitMapper.selectTechPersonByType(unitArea);
         List<Map> list3 = mappingUnitMapper.selectEquipmentByType(unitArea);
-        List<Map> result=new ArrayList<>();
-        Map<Object, Object> map1 = new HashMap<>();
-        Map<Object, Object> map2 = new HashMap<>();
-        Map<Object, Object> map3 = new HashMap<>();
+        List<Map> result=new ArrayList<Map>();
+        Map<Object, Object> map1 = new HashMap<Object, Object>();
+        Map<Object, Object> map2 = new HashMap<Object, Object>();
+        Map<Object, Object> map3 = new HashMap<Object, Object>();
         if(list1!=null && list1.size()>0){
             map1.put("unit",list1);
         }
@@ -85,7 +85,35 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
         result.add(map2);
         result.add(map3);
         return result;
-
-
     }
+
+
+    /**
+     * @Description: 查询白名单
+     * @Author: Bing
+     * @Date: 2020/7/16 11:42
+     **/
+    public PageInfo selectWhiteUnit(HashMap hashMap){
+        PageHelper.startPage(Integer.parseInt(hashMap.get("pageNumber")+""),Integer.parseInt(hashMap.get("pageSize")+""));
+        PageInfo pageInfo = new PageInfo(mappingUnitMapper.selectwhiteUnit());
+        if (null != pageInfo && !"".equals(pageInfo)){
+            return pageInfo;
+        }
+        return null;
+    }
+
+    /**
+     * @Description: 查询黑名单
+     * @Author: Bing
+     * @Date: 2020/7/16 11:42
+     **/
+    public PageInfo selectBlackUnit(HashMap hashMap){
+        PageHelper.startPage(Integer.parseInt(hashMap.get("pageNumber")+""),Integer.parseInt(hashMap.get("pageSize")+""));
+        PageInfo pageInfo = new PageInfo(mappingUnitMapper.selectBlackUnit());
+        if (null != pageInfo && !"".equals(pageInfo)){
+            return pageInfo;
+        }
+        return null;
+    }
+
 }

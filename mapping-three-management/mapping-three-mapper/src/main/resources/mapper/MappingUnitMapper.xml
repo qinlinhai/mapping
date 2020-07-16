@@ -91,4 +91,10 @@
     GROUP BY mn.qualification_level,e.name
   </select>
 
+  <select id="selectwhiteUnit" resultType="com.qwz.model.MappingUnit">
+    select id,unit_name,oa,qualification_level,certificate_code,belong_industry,linkman,phone,score from t_mapping_unit where unit_status = 1
+  </select>
+  <select id="selectBlackUnit" resultType="com.qwz.model.MappingUnit">
+    select id,unit_name,oa,qualification_level,certificate_code,belong_industry,linkman,phone,score from t_mapping_unit where unit_status = 2
+  </select>
 </mapper>
