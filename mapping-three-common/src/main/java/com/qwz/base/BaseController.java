@@ -544,6 +544,20 @@ public ResultData deleteDataNoExist(String msg){
         resultData.setMsg(msg);
         return resultData;
     }
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 查询成功 返回自定义消息 +数据
+     **/
+    protected ResultData selectSuccess(String detail,Object data){
+        ResultData resultData = new ResultData();
+        resultData.setCode(SELECT_SUCCESS.getCode());
+        resultData.setDetail(detail);
+        resultData.setData(data);
+        resultData.setMsg(SELECT_SUCCESS.getMsg());
+        return resultData;
+    }
 
     /**
      * @Description: 查询失败
