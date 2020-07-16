@@ -65,8 +65,8 @@ public class MappingProjectController extends CommonController<MappingProject> {
 
 
     @PostMapping("/selectResultCommitById")
-    public ResultData selectResultCommitById(@RequestBody ResultCommit resultCommit){
-        List<ResultCommit> resultCommits = resultCommitService.selectResultCommitById(resultCommit);
+    public ResultData selectResultCommitById(@RequestParam Long id){
+        ResultCommit resultCommit = resultCommitService.selectResultCommitById(id);
         return super.selectSuccess("查询汇交结果",resultCommit);
     }
 

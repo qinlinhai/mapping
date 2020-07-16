@@ -21,4 +21,9 @@
     <result column="meridian" property="meridian" jdbcType="VARCHAR" />
     <result column="coordinate" property="coordinate" jdbcType="LONGVARCHAR" />
   </resultMap>
+
+  <select id="selectOneData" resultMap="BaseResultMap">
+    select * from t_result_commit where id=#{id}
+  </select>
+
 </mapper>

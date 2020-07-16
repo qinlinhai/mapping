@@ -13,10 +13,13 @@ public class ResultCommitService extends BaseService<ResultCommit> {
     @Autowired
     private ResultCommitMapper resultCommitMapper;
 
-    public List<ResultCommit> selectResultCommitById(ResultCommit resultCommit){
-        if(resultCommit!=null && !"".equals(resultCommit)){
-           return super.selectList(resultCommit);
+    public ResultCommit selectResultCommitById(Long id){
+        if(id != null && !"".equals(id)){
+
+            return resultCommitMapper.selectOneData(id);
+        }else{
+            return null;
         }
-        return null;
+
     }
 }
