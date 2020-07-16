@@ -26,7 +26,7 @@ public interface MappingProjectMapper extends Mapper<MappingProject> {
      * @return
      */
     @Select("select * from t_mapping_project where user_id=25 and audit_status=0 and id=#{projectId}")
-    MappingProject selectSuccessRegisterById(Integer projectId);
+    MappingProject selectSuccessRegisterById(Long projectId);
     /**
      * @author  qlh
      * @date   2020/7/14
@@ -42,6 +42,7 @@ public interface MappingProjectMapper extends Mapper<MappingProject> {
      **/
     @Select("select mp.*,r.name,r.path,r.ext_name from t_mapping_project mp " +
             "left join t_resource r on mp.id=r.ref_biz_id where mp.id=#{projectId}")
-    List<Map> selectProjectandResource(Integer projectId);
+    List<Map> selectProjectandResource(Long projectId);
+
 
 }
