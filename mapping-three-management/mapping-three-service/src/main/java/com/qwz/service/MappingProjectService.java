@@ -21,7 +21,7 @@ public class MappingProjectService extends BaseService<MappingProject> {
     public PageInfo selectSuccessRegister(Integer currentPage,Integer pageSize,String searchName) throws Exception {
         PageHelper.startPage(currentPage,pageSize);
         List<MappingProject> mappingProjects = mappingProjectMapper.selectSuccessRegister(searchName);
-        PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<>(mappingProjects);
+        PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<MappingProject>(mappingProjects);
         return mappingProjectPageInfo;
     }
 
@@ -53,14 +53,14 @@ public class MappingProjectService extends BaseService<MappingProject> {
     public PageInfo selectNoAudit(Integer currentPage,Integer pageSize,String projectName){
       PageHelper.startPage(currentPage,pageSize);
         List<MappingProject> mappingProjects = mappingProjectMapper.selectNoAudit(projectName);
-        PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<>(mappingProjects);
+        PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<MappingProject>(mappingProjects);
         return mappingProjectPageInfo;
     }
 
     public PageInfo selectNoRemittance(Integer currentPage,Integer pageSize,String projectName){
         PageHelper.startPage(currentPage,pageSize);
         List<MappingProject> mappingProjects = mappingProjectMapper.selectNoRemittance(projectName);
-        PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<>(mappingProjects);
+        PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<MappingProject>(mappingProjects);
         return mappingProjectPageInfo;
     }
 
@@ -92,9 +92,9 @@ public class MappingProjectService extends BaseService<MappingProject> {
     public List<Map> selectPRojectByType(){
         List<Map> successmaps = mappingProjectMapper.selectSuccess();
         List<Map> failedmaps= mappingProjectMapper.selectFailed();
-        List<Map> result=new ArrayList<>();
-        Map<Object, Object> map1 = new HashMap<>();
-        Map<Object, Object> map2 = new HashMap<>();
+        List<Map> result=new ArrayList<Map>();
+        Map<Object, Object> map1 = new HashMap<Object, Object>();
+        Map<Object, Object> map2 = new HashMap<Object, Object>();
         if(successmaps!= null && successmaps.size()>0){
             map1.put("success",successmaps);
         }
@@ -105,4 +105,6 @@ public class MappingProjectService extends BaseService<MappingProject> {
         result.add(map2);
         return result;
     }
+
+
 }

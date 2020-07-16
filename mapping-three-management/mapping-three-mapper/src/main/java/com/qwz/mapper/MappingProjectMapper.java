@@ -79,4 +79,11 @@ public interface MappingProjectMapper extends Mapper<MappingProject> {
     @Select("select count(project_type) count,project_type type from t_mapping_project where status=2 GROUP BY project_type")
     List<Map> selectFailed();
 
+    /**
+     * @Description:
+     *          项目管理  查询登录用户管理的项目
+     * @Author: Bing
+     * @Date: 2020/7/16 20:29
+     **/
+    List<MappingProject> selectAdm(Integer userid);
 }
