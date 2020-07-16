@@ -56,5 +56,4 @@
     <result column="unit_intro" property="unitIntro" jdbcType="LONGVARCHAR" />
     <result column="coordinate" property="coordinate" jdbcType="LONGVARCHAR" />
   </resultMap>
-
 </mapper>

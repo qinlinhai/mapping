@@ -16,5 +16,18 @@ public class AuditService extends BaseService<Audit>{
     private AuditMapper auditMapper;
 
 
-
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 添加一条项目登记审核记录
+     **/
+    public Boolean addMappingProjectAudit(Audit audit){
+        Integer insert = super.insert(audit);
+        if(insert>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
