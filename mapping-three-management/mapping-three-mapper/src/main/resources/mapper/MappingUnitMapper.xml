@@ -58,7 +58,7 @@
   </resultMap>
 
   <select id="selectUnitByType" resultType="map">
-    select count(qualification_level),qualification_level from t_mapping_unit where 1=1
+    select count(qualification_level) ucount,qualification_level ulevel from t_mapping_unit where 1=1
     <if test="unitArea == '本地单位'.toString()">
       and owned_district  in ('江城区','阳春市','阳东区','阳西县')
     </if>
@@ -70,16 +70,25 @@
 
 
   <select id="selectTechPersonByType" resultType="map">
-    select count(*),mn.qualification_level,t.major_type from t_mapping_unit mn  join t_technicist t on mn.user_id=t.user_id
+    select count(*) tpcount,mn.qualification_level tplevel,t.major_type tpType from t_mapping_unit mn  join t_technicist t on mn.user_id=t.user_id
     <if test="unitArea == '本地单位'.toString()">
-      and owned_district  in ('江城区','阳春市','阳东区','阳西县')
+      and mn.owned_district  in ('江城区','阳春市','阳东区','阳西县')
     </if>
     <if test="unitArea == '外地单位'.toString()">
-      and owned_district  not in ('江城区','阳春市','阳东区','阳西县')
+      and mn.owned_district  not in ('江城区','阳春市','阳东区','阳西县')
     </if>
     GROUP BY mn.qualification_level,t.major_type
   </select>
 
-
+  <select id="selectEquipmentByType" resultType="map">
+    select count(e.name) eqcount ,mn.qualification_level eqlevel ,e.name eqname from t_mapping_unit mn join t_equipment e on mn.user_id=e.user_id
+    <if test="unitArea == '本地单位'.toString()">
+      and mn.owned_district  in ('江城区','阳春市','阳东区','阳西县')
+    </if>
+    <if test="unitArea == '外地单位'.toString()">
+      and mn.owned_district  not in ('江城区','阳春市','阳东区','阳西县')
+    </if>
+    GROUP BY mn.qualification_level,e.name
+  </select>
 
 </mapper>

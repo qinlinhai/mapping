@@ -1,8 +1,8 @@
 package com.qwz.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.qwz.base.BaseController;
 import com.qwz.base.BaseService;
+
 import com.qwz.base.CommonController;
 import com.qwz.base.ResultData;
 import com.qwz.model.MappingUnit;
@@ -75,13 +75,13 @@ public class MappingUnitController extends CommonController<MappingUnit> {
      * @desc
      * 查询 人员设备信息
      **/
-    @GetMapping("/selectUnitByType")
-    public ResultData selectUnitByType(@RequestParam("unitArea") String unitArea){
-        List<Map> maps = mappingUnitService.selectUnitByType(unitArea);
+    @GetMapping("/selectUnitPersonEquipment")
+    public ResultData selectUnitPersonEquipment(@RequestParam("unitArea") String unitArea){
+        List<Map> maps = mappingUnitService.selectUnitPersonEquipment(unitArea);
         if(maps!=null && maps.size()>0){
-            return super.selectSuccess("查询人员设备成功",maps);
+            return super.selectSuccess("查询人员设备信息成功",maps);
         }else{
-            return super.selectFailed("查询失败");
+            return super.selectFailed("查询人员设备信息失败");
         }
     }
 

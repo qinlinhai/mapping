@@ -59,4 +59,11 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
      **/
     List<Map> selectTechPersonByType(String unitArea);
 
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 查询 根据资质等级查询设备数量
+     **/
+    List<Map> selectEquipmentByType(String unitArea);
 }

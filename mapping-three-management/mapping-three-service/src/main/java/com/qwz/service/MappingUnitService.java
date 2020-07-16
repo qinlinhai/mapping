@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.common.Mapper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,12 +64,28 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
         return maps;
     }
 
-    public List<Map> selectUnitByType(String unitArea){
-        List<Map> maps = mappingUnitMapper.selectUnitByType(unitArea);
-        if(maps!=null && maps.size()>0){
-            return maps;
-        }else{
-            return null;
+    public List<Map> selectUnitPersonEquipment(String unitArea){
+        List<Map> list1 = mappingUnitMapper.selectUnitByType(unitArea);
+        List<Map> list2 = mappingUnitMapper.selectTechPersonByType(unitArea);
+        List<Map> list3 = mappingUnitMapper.selectEquipmentByType(unitArea);
+        List<Map> result=new ArrayList<>();
+        Map<Object, Object> map1 = new HashMap<>();
+        Map<Object, Object> map2 = new HashMap<>();
+        Map<Object, Object> map3 = new HashMap<>();
+        if(list1!=null && list1.size()>0){
+            map1.put("unit",list1);
         }
+        if(list2!=null && list2.size()>0){
+            map2.put("techPerson",list2);
+        }
+        if(list3!=null && list3.size()>0){
+            map3.put("Equipment",list3);
+        }
+        result.add(map1);
+        result.add(map2);
+        result.add(map3);
+        return result;
+
+
     }
 }
