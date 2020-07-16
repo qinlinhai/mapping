@@ -103,6 +103,33 @@ public class MappingProjectController extends CommonController<MappingProject> {
         }
     }
 
+
+    /**
+     * @Description: 项目管理  查询登录用户管理的项目
+     * @Author: Bing
+     * @Date: 2020/7/16 21:49
+     **/
+    @PostMapping("/selectAdm")
+    public ResultData selectAdm(@RequestParam String projectType,@RequestParam Integer userid,
+                                @RequestParam Integer pageNumber, @RequestParam Integer pageSize){
+        PageInfo pageInfo = mappingProjectService.selectAdm(projectType, userid, pageNumber, pageSize);
+        if (pageInfo != null && !"".equals(pageInfo)){
+            return super.selectSuccess(pageInfo);
+        }else {
+            return  super.selectFailed();
+        }
+    }
+
+    /**
+     * @Description:
+     * @Author: Bing
+     * @Date: 2020/7/16 22:06
+     **/
+    @PostMapping("/insertAdm")
+    public ResultData insertAdm(@RequestBody Map map){
+        return  super.insert(map);
+    }
+
     @Override
     public BaseService getBaseService() {
         return null;

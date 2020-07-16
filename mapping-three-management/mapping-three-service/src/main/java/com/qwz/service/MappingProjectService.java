@@ -106,5 +106,18 @@ public class MappingProjectService extends BaseService<MappingProject> {
         return result;
     }
 
-
+    /**
+     * @Description: 项目管理  查询登录用户管理的项目
+     * @Author: Bing
+     * @Date: 2020/7/16 21:42
+     **/
+    public PageInfo selectAdm(String projectType,Integer userid,Integer pageNumber,Integer pageSize){
+        PageHelper.startPage(pageNumber,pageSize);
+        List<MappingProject> mappingProjects = mappingProjectMapper.selectAdm(projectType,userid);
+        PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<MappingProject>(mappingProjects);
+        if (mappingProjectPageInfo != null && !"".equals(mappingProjectPageInfo)){
+            return mappingProjectPageInfo;
+        }
+        return null;
+    }
 }
