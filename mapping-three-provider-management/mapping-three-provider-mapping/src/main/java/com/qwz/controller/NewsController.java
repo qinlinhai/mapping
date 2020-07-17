@@ -39,8 +39,9 @@ public class NewsController extends CommonController<News> {
      * @Date: 2020/7/16 16:18
      **/
     @PostMapping("/selectNews")
-    public ResultData selectNews(@RequestParam HashMap hashMap){
-        PageInfo pageInfo = newsService.selectNews(hashMap);
+    public ResultData selectNews(@RequestParam String title,@RequestParam Integer pageNumber,
+                                 @RequestParam Integer pageSize){
+        PageInfo pageInfo = newsService.selectNewss(title, pageNumber, pageSize);
         if (null != pageInfo && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
         }else {
@@ -54,7 +55,7 @@ public class NewsController extends CommonController<News> {
      * @Date: 2020/7/16 9:22
      **/
     @PostMapping("/insertNews")
-    public ResultData insert(/*@RequestBody*/ News news){
+    public ResultData insert(@RequestBody News news){
         Integer integer = newsService.insertNews(news);
         if (integer > 0){
             return super.addSuccess(integer);
@@ -69,7 +70,7 @@ public class NewsController extends CommonController<News> {
      * @Date: 2020/7/16 9:22
      **/
     @PostMapping("/updateNews")
-    public ResultData updateNews(/*@RequestBody*/ News news){
+    public ResultData updateNews(@RequestBody News news){
         Integer updateNews = newsService.updateNews(news);
         if (updateNews > 0){
             return super.updateSuccess(updateNews);

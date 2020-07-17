@@ -26,8 +26,9 @@ public class NewsController extends BaseController {
 
     @PostMapping("/selectNews")
     @ApiOperation(value = "分页查询新闻信息",notes = "公告新闻的查询")
-    public ResultData selectNews(@RequestParam HashMap hashMap){
-        ResultData resultData = iProjectService.selectNews(hashMap);
+    public ResultData selectNews(@RequestParam String title,@RequestParam Integer pageNumber,
+                                 @RequestParam Integer pageSize){
+        ResultData resultData = iProjectService.selectNews(title, pageNumber, pageSize);
         return resultData;
     }
 

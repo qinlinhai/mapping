@@ -43,7 +43,8 @@ public interface IProjectService {
      * @Date: 2020/7/16 11:17
      **/
     @PostMapping("/selectNews")
-    ResultData selectNews(@RequestParam HashMap hashMap);
+    ResultData selectNews(@RequestParam String title,@RequestParam Integer pageNumber,
+                          @RequestParam Integer pageSize);
 
     /**
      * @Description: 添加公告新闻

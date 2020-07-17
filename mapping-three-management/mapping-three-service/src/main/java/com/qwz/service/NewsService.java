@@ -31,9 +31,9 @@ public class NewsService extends BaseService<News> {
      * @Author: Bing
      * @Date: 2020/7/15 17:15
      **/
-    public PageInfo selectNews(HashMap hashMap){
-        PageHelper.startPage(Integer.parseInt(hashMap.get("pageNumber")+""),Integer.parseInt(hashMap.get("pageSize")+""));
-        PageInfo pageInfo = new PageInfo(newsMapper.selectAll());
+    public PageInfo selectNewss(String title,Integer pageNumber,Integer pageSize){
+        PageHelper.startPage(pageNumber,pageSize);
+        PageInfo pageInfo = new PageInfo(newsMapper.selectNewss(title));
         if (null != pageInfo && !"".equals(pageInfo)){
             return pageInfo;
         }
