@@ -118,4 +118,9 @@
       and unit_name like concat('%',#{unitName},'%')
     </if>
   </select>
+
+  <select id="selectResourceByUserId" resultType="map">
+    select r.name filename,r.size filesize,r.path filepath
+    from t_mapping_unit mn left join t_resource r on mn.id=r.ref_biz_id where mn.user_id=#{userId}
+  </select>
 </mapper>

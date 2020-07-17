@@ -101,4 +101,13 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
      *
      **/
     List<MappingUnit> selectUnitNoUpdateAudit(String unitName);
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 查询关于此单位的 附件
+     **/
+    List<Map> selectResourceByUserId(Integer userId);
 }

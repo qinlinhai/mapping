@@ -206,4 +206,24 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
         }
         return null;
     }
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 查询关于此单位的附件
+     **/
+    public List<Map> selectResourceByUnitId(Integer userId){
+        if(userId!=null){
+            List<Map> maps = mappingUnitMapper.selectResourceByUserId(userId);
+            if(maps!=null && maps.size()>0){
+                return maps;
+            }else{
+                return null;
+            }
+        }
+        return null;
+    }
+
+
 }

@@ -198,12 +198,28 @@ public class MappingUnitController extends CommonController<MappingUnit> {
     * 根据userId查询单位的基本信息
     **/
    @PostMapping("/selectUnitByUserId")
-   public ResultData selectUnitByUserId(MappingUnit mappingUnit){
+   public ResultData selectUnitByUserId(@RequestBody MappingUnit mappingUnit){
        MappingUnit mappingUnit1 = mappingUnitService.selectUnitByUserId(mappingUnit);
        if(mappingUnit1!=null && !"".equals(mappingUnit1)){
            return super.selectSuccess("根据userId查询单位的基本信息成功",mappingUnit1);
        }else{
            return super.selectFailed("根据userId查询单位的基本信息失败");
+       }
+   }
+
+   /**
+    * @author  qlh
+    * @date   2020/7/17
+    * @desc
+    * 查询关于此单位的附件
+    **/
+   @GetMapping("/selectResourceByUnitId")
+   public ResultData selectResourceByUnitId(@RequestParam("userId") Integer userId){
+       List<Map> maps = mappingUnitService.selectResourceByUnitId(userId);
+       if(maps!=null && maps.size()>0){
+           return super.selectSuccess("查询单位附件成功",maps);
+       }else{
+           return super.selectFailed("查询单位附件失败");
        }
    }
 
