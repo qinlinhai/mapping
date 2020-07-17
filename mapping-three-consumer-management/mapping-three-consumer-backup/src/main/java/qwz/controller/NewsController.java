@@ -2,7 +2,7 @@ package qwz.controller;
 
 import com.qwz.base.BaseController;
 import com.qwz.base.ResultData;
-import com.qwz.service.NewsService;
+import com.qwz.service.IProjectService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,12 +22,12 @@ import java.util.Map;
 public class NewsController extends BaseController {
 
     @Autowired
-    private NewsService newsService;
+    private IProjectService iProjectService;
 
     @PostMapping("/selectNews")
     @ApiOperation(value = "分页查询新闻信息",notes = "公告新闻的查询")
     public ResultData selectNews(@RequestParam HashMap hashMap){
-        ResultData resultData = newsService.selectNews(hashMap);
+        ResultData resultData = iProjectService.selectNews(hashMap);
         return resultData;
     }
 
@@ -38,7 +38,7 @@ public class NewsController extends BaseController {
      **/
     @PostMapping("/insertNews")
     public ResultData insertNews(@RequestParam Map map){
-        ResultData resultData = newsService.insertNews(map);
+        ResultData resultData = iProjectService.insertNews(map);
         return resultData;
     }
 
@@ -49,7 +49,7 @@ public class NewsController extends BaseController {
      **/
     @PostMapping("/updateNews")
     public ResultData updateNews(@RequestBody Map map){
-        ResultData resultData = newsService.updateNews(map);
+        ResultData resultData = iProjectService.updateNews(map);
         return resultData;
     }
 
@@ -60,7 +60,7 @@ public class NewsController extends BaseController {
      **/
     @PostMapping("/deleteNews")
     public ResultData deleteNews(@RequestParam String ids){
-        ResultData resultData = newsService.deleteNews(ids);
+        ResultData resultData = iProjectService.deleteNews(ids);
         return resultData;
     }
 
@@ -71,7 +71,7 @@ public class NewsController extends BaseController {
      **/
     @PostMapping("/deleteOneNews")
     public ResultData deleteOneNews(@RequestBody Map map){
-        ResultData resultData = newsService.deleteOneNews(map);
+        ResultData resultData = iProjectService.deleteOneNews(map);
         return resultData;
     }
 }

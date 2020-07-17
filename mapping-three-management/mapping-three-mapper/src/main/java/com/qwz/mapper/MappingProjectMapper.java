@@ -86,4 +86,11 @@ public interface MappingProjectMapper extends Mapper<MappingProject> {
      * @Date: 2020/7/16 20:29
      **/
     List<MappingProject> selectAdm(@Param("projectType") String projectType,@Param("userid") Integer userid);
+
+    /**
+     * @Description: 项目汇交
+     * @Author: Bing
+     * @Date: 2020/7/17 11:03
+     **/
+    List<MappingProject> selectRem(@Param("projectType") String projectType,@Param("userid") Integer userid);
 }
