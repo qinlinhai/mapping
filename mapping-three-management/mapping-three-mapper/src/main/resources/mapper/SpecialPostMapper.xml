@@ -20,4 +20,11 @@
     <result column="create_time" property="createTime" jdbcType="DATE" />
     <result column="modify_time" property="modifyTime" jdbcType="DATE" />
   </resultMap>
+  <select id="selectSpecial" resultMap="BaseResultMap">
+    select id,name,id_number,sex,age,school,major,special_post from t_special_post where user_id=#{userid}
+  </select>
+  <select id="selectIdSpecial" resultMap="BaseResultMap">
+    select s.id,s.name,s.id_number,s.sex,s.age,s.work_year,s.school,s.education_background,s.degree,s.major,s.special_post,r.name,r.size,r.path,r.type,r.ext_name from t_special_post s
+    left join t_resource r on s.id = r.ref_biz_id where s.id =#{id}
+  </select>
 </mapper>

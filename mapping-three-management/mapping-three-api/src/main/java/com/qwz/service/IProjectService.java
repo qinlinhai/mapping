@@ -182,4 +182,35 @@ public interface IProjectService {
      **/
     @PostMapping("/selectBlackUnit")
     ResultData selectBlackUnit(@RequestParam HashMap hashMap);
+
+    /**
+     * @Description: 根据userid查询仪器设备信息
+     * @Author: Bing
+     * @Date: 2020/7/17 16:32
+     **/
+    @PostMapping("/selectEquipment")
+    ResultData selectEquipment(@RequestParam Integer userid,@RequestParam Integer pageNumber,
+                                      @RequestParam Integer pageSize);
+
+    /**
+     * @Description: 根据id查询仪器设备基本信息
+     * @Author: Bing
+     * @Date: 2020/7/17 19:38
+     **/
+    @PostMapping("/selectIdEquipment")
+    ResultData selectIdEquipment(@RequestParam Long id);
+
+    @PostMapping("/selectTec")
+    ResultData selectTec(@RequestParam Integer userid,@RequestParam Integer pageNumber,
+                                @RequestParam Integer pageSize);
+
+    @PostMapping("/selectOneTec")
+    ResultData selectOneTec(@RequestParam Long id);
+
+    @PostMapping("/selectSpecial")
+    ResultData selectSpecial(@RequestParam Integer userid,@RequestParam Integer pageNumber,
+                                    @RequestParam Integer pageSize);
+
+    @PostMapping("/selectIdSpecial")
+    ResultData selectIdSpecial(@RequestParam Long id);
 }

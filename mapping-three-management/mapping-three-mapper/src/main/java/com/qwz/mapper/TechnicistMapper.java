@@ -14,4 +14,11 @@ public interface TechnicistMapper extends Mapper<Technicist> {
      * @Date: 2020/7/17 15:58
      **/
     List<Technicist> selectTec(@Param("userid") Integer userid);
+
+    /**
+     * @Description: 根据id查询技术人员基础信息
+     * @Author: Bing
+     * @Date: 2020/7/17 16:38
+     **/
+    List<Technicist> selectOneTec(@Param("id") Long id);
 }

@@ -37,4 +37,10 @@
   <select id="selectTec" resultMap="BaseResultMap">
     select id,name,id_number,major_type,sex,age,major,duty,title_major from t_technicist where user_id=#{userid}
   </select>
+  <select id="selectOneTec" resultMap="BaseResultMap">
+    select id,name,major_type,id_type,id_number,sex,age,work_year,duty,school,
+    degree,education_background,major,title_major,start_time,
+    start_contract,end_contract,post,mapping_year,special_post,affirm from t_technicist
+    where id=#{id}
+  </select>
 </mapper>

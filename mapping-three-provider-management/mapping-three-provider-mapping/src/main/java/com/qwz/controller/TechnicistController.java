@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @description:
  * @author: Bing
@@ -32,11 +34,26 @@ public class TechnicistController extends CommonController<Technicist> {
      * @Date: 2020/7/17 16:07
      **/
     @PostMapping("/selectTec")
-    public ResultData selectTec(@RequestParam Integer userid,@RequestParam Integer pageNo,
+    public ResultData selectTec(@RequestParam Integer userid,@RequestParam Integer pageNumber,
                                 @RequestParam Integer pageSize){
-        PageInfo pageInfo = technicistService.selectTec(userid, pageNo, pageSize);
+        PageInfo pageInfo = technicistService.selectTec(userid, pageNumber, pageSize);
         if (pageInfo != null && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
+        }else {
+            return super.selectFailed();
+        }
+    }
+
+    /**
+     * @Description: 根据id查询技术人员基础信息
+     * @Author: Bing
+     * @Date: 2020/7/17 17:12
+     **/
+    @PostMapping("/selectOneTec")
+    public ResultData selectOneTec(@RequestParam Long id){
+        List<Technicist> technicists = technicistService.selectOneTec(id);
+        if (technicists != null && !"".equals(technicists)){
+            return super.selectSuccess(technicists);
         }else {
             return super.selectFailed();
         }

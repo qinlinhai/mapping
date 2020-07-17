@@ -22,6 +22,12 @@
   </resultMap>
 
   <select id="selectEquipment" resultMap="BaseResultMap">
+      select id,name,brand,production_id,number,check_date,effective_date,invoice_code,check_department,check_certificate_id,identified FROM t_equipment
+      where user_id=#{userid}
+  </select>
 
+  <select id="selectIdEquipment" resultMap="BaseResultMap">
+    select t.id,t.name,t.brand,t.production_id,t.number,t.check_date,t.effective_date,t.invoice_code,check_department,t.check_certificate_id,t.`identified`,r.name,r.size,r.path,r.type,r.ext_name from t_equipment t join t_resource r on t.id = r.ref_biz_id
+    WHERE t.id=#{id}
   </select>
 </mapper>
