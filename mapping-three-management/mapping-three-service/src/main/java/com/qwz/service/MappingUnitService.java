@@ -224,6 +224,40 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
         }
         return null;
     }
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 修改单位的分值
+     **/
+    public Boolean updateUnitScore(Integer score,Long unitId){
+        if(score!=null && unitId!=null){
+            int i = mappingUnitMapper.updateUnitScore(unitId, score);
+            if(i>0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
 
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 修改单位状态
+     **/
+    public Boolean updateUnitStatus(Long unitId,Integer auditStatus){
+       if(unitId!=null&& auditStatus!=null){
+           int i = mappingUnitMapper.updateUnitAuditstatus(auditStatus, unitId);
+           if(i>0){
+               return true;
+           }else{
+               return false;
+           }
+       }
+        return null;
+    }
 
 }

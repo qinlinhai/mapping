@@ -5,7 +5,9 @@ import com.qwz.base.BaseService;
 
 import com.qwz.base.CommonController;
 import com.qwz.base.ResultData;
+import com.qwz.model.Audit;
 import com.qwz.model.MappingUnit;
+import com.qwz.service.AuditService;
 import com.qwz.service.MappingUnitService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class MappingUnitController extends CommonController<MappingUnit> {
 
     @Autowired
     private MappingUnitService mappingUnitService;
+    @Autowired
+    private AuditService auditService;
     @Override
     public BaseService<MappingUnit> getBaseService() {
         return null;
@@ -222,5 +226,8 @@ public class MappingUnitController extends CommonController<MappingUnit> {
            return super.selectFailed("查询单位附件失败");
        }
    }
+
+
+
 
 }

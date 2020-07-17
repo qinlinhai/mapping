@@ -3,8 +3,10 @@ package com.qwz.mapper;
 import com.qwz.model.MappingUnit;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.boot.web.server.MimeMappings;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PostMapping;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -110,4 +112,21 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
      * 查询关于此单位的 附件
      **/
     List<Map> selectResourceByUserId(Integer userId);
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 修改单位的分数
+     **/
+    @Update("update t_mapping_unit set score=#{score} where id=#{unitId}")
+    int updateUnitScore(@Param("unitId") Long unitId,@Param("score") Integer score);
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 修改单位审核状态
+     **/
+    @Update("update t_mapping_unit set audit_status=#{auditStatus} where id=#{unitId}")
+    int updateUnitAuditstatus(@Param("auditStatus") Integer auditStatus,@Param("unitId") Long unitId);
+
 }

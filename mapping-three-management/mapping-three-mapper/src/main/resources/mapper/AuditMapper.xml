@@ -14,4 +14,17 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
 
+
+  <select id="selectUnitAuditByUnitId" resultMap="BaseResultMap">
+    select * from t_audit where ref_id=#{unitId}
+  </select>
+
+
+  <select id="selectProjectAuditByRefId" resultMap="BaseResultMap">
+    select * from t_audit where name='项目登记审核' and ref_id=#{refId}
+  </select>
+
+  <select id="selectProjectRemittanceByRefId" resultMap="BaseResultMap">
+    select * from t_audit where name='项目成果汇交' and ref_id=#{refId}
+  </select>
 </mapper>
