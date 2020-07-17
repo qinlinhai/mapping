@@ -25,7 +25,7 @@ public abstract class BaseService<T> {
     private Class<T> cache = null;
 
     @Autowired
-    public Mapper<T> mapper;
+    private Mapper<T> mapper;
 
     protected Mapper getMapper(){
          return mapper;
