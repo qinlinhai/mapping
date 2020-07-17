@@ -179,7 +179,7 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
             throw new Exception("pageSize不能为空");
         }
         List<MappingUnit> mappingUnits = mappingUnitMapper.selectUnitNoRegister(unitName);
-        PageInfo<MappingUnit> mappingUnitPageInfo = new PageInfo<>(mappingUnits);
+        PageInfo<MappingUnit> mappingUnitPageInfo = new PageInfo<MappingUnit>(mappingUnits);
         if(mappingUnitPageInfo != null && !"".equals(mappingUnitPageInfo)){
             return mappingUnitPageInfo;
         }else{
