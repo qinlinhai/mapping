@@ -98,4 +98,9 @@
       and project_type like '%${projectType}%'
     </if>
   </select>
+
+
+  <select id="selectProjectByUserId" resultMap="BaseResultMap">
+    select * from t_mapping_project where user_id=#{userId}
+  </select>
 </mapper>

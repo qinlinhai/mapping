@@ -200,7 +200,23 @@ public class MappingProjectController extends CommonController<MappingProject> {
         }
     }
 
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据userId查询单位所属项目
+     **/
 
+    @GetMapping("/selectProjectByUserId")
+    public ResultData selectProjectByUserId(@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize") Integer pageSize,
+                                            @RequestParam("userId") Integer userId){
+        PageInfo pageInfo = mappingProjectService.selectProjectByUserId(currentPage, pageSize, userId);
+        if(pageInfo!=null){
+            return super.selectSuccess("根据userId查询单位所属项目成功",pageInfo);
+        }else{
+            return super.selectFailed("根据userId查询单位所属项目失败");
+        }
+    }
     @Override
     public BaseService getBaseService() {
         return null;

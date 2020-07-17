@@ -245,4 +245,26 @@ public class MappingProjectService extends BaseService<MappingProject> {
         }
         return -1;
     }
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据userId查询单位所属项目
+     **/
+    public PageInfo selectProjectByUserId(Integer currentPage,Integer pageSize,Integer userId){
+        if(currentPage!=null && pageSize!=null){
+            PageHelper.startPage(currentPage,pageSize);
+            if(userId!=null){
+                List<MappingProject> mappingProjects = mappingProjectMapper.selectProjectByUserId(userId);
+                if(mappingProjects!=null&&mappingProjects.size()>0){
+                    PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<MappingProject>(mappingProjects);
+                    return mappingProjectPageInfo;
+                }else{
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
 }
