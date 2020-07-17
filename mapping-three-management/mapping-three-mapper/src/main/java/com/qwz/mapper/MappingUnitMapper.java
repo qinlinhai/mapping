@@ -80,4 +80,13 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
      * @Date: 2020/7/16 11:38
      **/
     List<MappingUnit> selectBlackUnit();
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 分页 模糊查询所有单位
+     **/
+
+    List<MappingUnit> selectAllUnitVague(String projectName);
 }

@@ -116,4 +116,16 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
         return null;
     }
 
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 分页模糊查询所有单位
+     **/
+
+    public PageInfo selectAllUnitVague(Integer pageNumber,Integer pageSize,String projectName){
+        return null;
+    }
+
+
 }

@@ -27,7 +27,7 @@ public abstract class BaseService<T> {
     @Autowired
     public Mapper<T> mapper;
 
-     protected Mapper getMapper(){
+    protected Mapper getMapper(){
          return mapper;
      }
 

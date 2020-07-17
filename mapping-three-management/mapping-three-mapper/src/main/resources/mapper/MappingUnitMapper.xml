@@ -97,4 +97,11 @@
   <select id="selectBlackUnit" resultType="com.qwz.model.MappingUnit">
     select id,unit_name,oa,qualification_level,certificate_code,belong_industry,linkman,phone,score from t_mapping_unit where unit_status = 2
   </select>
+
+  <select id="selectAllUnitVague" resultMap="BaseResultMap">
+    select * from t_mapping_unit where 1=1
+    <if test="projectName!=null and projectName!=''">
+      and project_name like concat('%',#{projectName},'%')
+    </if>
+  </select>
 </mapper>
