@@ -12,7 +12,6 @@ import java.io.Serializable;
  * @author: Bing
  * @time: 2020/7/15 15:39
  */
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)

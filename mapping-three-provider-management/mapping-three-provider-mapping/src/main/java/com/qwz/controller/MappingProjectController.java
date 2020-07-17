@@ -130,10 +130,15 @@ public class MappingProjectController extends CommonController<MappingProject> {
      * @Date: 2020/7/16 22:06
      **/
     @PostMapping("/insertAdm")
-    public ResultData insertAdm( Map mappingProject){
-        /*mappingProject.setId(Long.parseLong(IDUtils.getNum19()));*/
-        mappingProject.put("id",Long.parseLong(IDUtils.getNum19()));
-        return  super.insert(mappingProject);
+    public ResultData insertAdm(/*@RequestBody*/ MappingProject mappingProject){
+        mappingProject.setId(Long.parseLong(IDUtils.getNum19()));
+       /* mappingProject.put("id",Long.parseLong(IDUtils.getNum19()));*/
+        Integer insert = mappingProjectService.insertAdm(mappingProject);
+        if (insert > 0){
+            return super.addSuccess(insert);
+        }else {
+            return super.addFailed();
+        }
     }
 
     @Override

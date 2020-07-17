@@ -29,7 +29,8 @@ public class LoginService extends BaseService<User> {
             User user2 = super.selectOne(user1);
             //判断user2是否为null
             if (null == user2){
-                tokenVo.setIfSuccess(false).setType(1);
+                tokenVo.setIfSuccess(false);
+                tokenVo.setType(1);
                 return tokenVo;
             }else {
                 //用户名正确，查询密码
@@ -37,7 +38,8 @@ public class LoginService extends BaseService<User> {
                 User user3 = super.selectOne(user1);
                 //判断user3是否为null
                 if (null == user3){
-                    tokenVo.setIfSuccess(false).setType(2);
+                    tokenVo.setIfSuccess(false);
+                    tokenVo.setType(2);
                     return tokenVo;
                 }else {
                     //登录成功
@@ -45,15 +47,18 @@ public class LoginService extends BaseService<User> {
                     user3.setToken(token);
                     Integer update = super.update(user3);
                     if (update > 0){
-                        tokenVo.setIfSuccess(true).setToken(token);
+                        tokenVo.setIfSuccess(true);
+                        tokenVo.setToken(token);
                     }else {
-                        tokenVo.setIfSuccess(true).setType(4);
+                        tokenVo.setIfSuccess(true);
+                        tokenVo.setType(4);
                         return tokenVo;
                     }
                 }
             }
         }else {
-            tokenVo.setIfSuccess(false).setType(4);
+            tokenVo.setIfSuccess(false);
+            tokenVo.setType(4);
             return tokenVo;
         }
         return tokenVo;

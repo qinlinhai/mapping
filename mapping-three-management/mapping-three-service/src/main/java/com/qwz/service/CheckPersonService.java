@@ -30,6 +30,7 @@ public class CheckPersonService extends BaseService<CheckPerson> {
      * @Date: 2020/7/16 16:12
      **/
     public PageInfo selectCheckPerson(HashMap hashMap){
+
         PageHelper.startPage(Integer.parseInt(hashMap.get("pageNumber")+""),Integer.parseInt(hashMap.get("pageSize")+""));
         PageInfo pageInfo = new PageInfo(checkpersonMapper.selectCheckPerson());
         if (null != pageInfo && !"".equals(pageInfo)){
