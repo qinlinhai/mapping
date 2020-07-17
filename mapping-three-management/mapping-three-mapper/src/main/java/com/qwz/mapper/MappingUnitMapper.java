@@ -36,12 +36,7 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
     @Select("select count(*) from t_mapping_project where user_id=#{userId}")
     Integer selectProjectCount(@Param("userId") Integer userId);
 
-    /**
-     * @author  qlh
-     * @date   2020/7/16
-     * @desc
-     * 人员设备汇总统计
-     **/
+
 
     /**
      * @author  qlh
@@ -88,5 +83,22 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
      * 分页 模糊查询所有单位
      **/
 
-    List<MappingUnit> selectAllUnitVague(String projectName);
+    List<MappingUnit> selectAllUnitVague(String unitName);
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 分页模糊查询 未注册通过的单位
+     **/
+    List<MappingUnit> selectUnitNoRegister(String unitName);
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 分页模糊查询 待修改审核
+     *
+     **/
+    List<MappingUnit> selectUnitNoUpdateAudit(String unitName);
 }

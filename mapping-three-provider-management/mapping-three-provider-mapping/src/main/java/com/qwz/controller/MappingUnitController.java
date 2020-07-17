@@ -7,6 +7,7 @@ import com.qwz.base.CommonController;
 import com.qwz.base.ResultData;
 import com.qwz.model.MappingUnit;
 import com.qwz.service.MappingUnitService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,10 @@ public class MappingUnitController extends CommonController<MappingUnit> {
 
     @Autowired
     private MappingUnitService mappingUnitService;
+    @Override
+    public BaseService<MappingUnit> getBaseService() {
+        return null;
+    }
     /**
      * @author  qlh
      * @date   2020/7/16
@@ -116,8 +121,90 @@ public class MappingUnitController extends CommonController<MappingUnit> {
         }
     }
 
-    @Override
-    public BaseService<MappingUnit> getBaseService() {
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 分页模糊查询查询所有单位
+     **/
+    @GetMapping("/selectAllUnitVague")
+    public ResultData selectAllUnitVague(@RequestParam("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize
+    ,@Param("projectName") String unitName){
+        try {
+            PageInfo pageInfo = mappingUnitService.selectAllUnitVague(currentPage, pageSize, unitName);
+            if(pageInfo!=null && !"".equals(pageInfo)){
+
+                return super.selectSuccess("分页模糊查询所有单位成功",pageInfo);
+            }else{
+                return super.selectFailed("分页模糊查询所有单位失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     *
+     * 分页模糊查询待修改单位列表
+     **/
+    @GetMapping("/selectUnitNoUpdateAudit")
+    public ResultData selectUnitNoUpdateAudit(@RequestParam("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize
+            ,@Param("projectName") String unitName){
+        try {
+            PageInfo pageInfo = mappingUnitService.selectUnitNoUpdateAudit(currentPage, pageSize, unitName);
+            if(pageInfo!=null && !"".equals(pageInfo)){
+                return super.selectSuccess("分页模糊查询待修改单位列表成功",pageInfo);
+            }else{
+                return super.selectFailed("分页模糊查询待修改单位列表失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 分页模糊查询待审核单位列表
+     **/
+    @GetMapping("/selectUnitNoRegister")
+    public ResultData selectUnitNoRegister(@RequestParam("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize
+            ,@Param("projectName") String unitName){
+        try {
+            PageInfo pageInfo = mappingUnitService.selectUnitNoRegister(currentPage, pageSize, unitName);
+            if(pageInfo!=null && !"".equals(pageInfo)){
+                return super.selectSuccess("分页模糊查询待审核单位列表成功",pageInfo);
+            }else{
+                return super.selectFailed("分页模糊查询待审核单位列表失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+   /**
+    * @author  qlh
+    * @date   2020/7/17
+    * @desc
+    * 根据userId查询单位的基本信息
+    **/
+   @PostMapping("/selectUnitByUserId")
+   public ResultData selectUnitByUserId(@RequestBody MappingUnit mappingUnit){
+       MappingUnit mappingUnit1 = mappingUnitService.selectUnitByUserId(mappingUnit);
+       if(mappingUnit1!=null && !"".equals(mappingUnit1)){
+           return super.selectSuccess("根据userId查询单位的基本信息成功",mappingUnit1);
+       }else{
+           return super.selectFailed("根据userId查询单位的基本信息失败");
+       }
+   }
+
 }

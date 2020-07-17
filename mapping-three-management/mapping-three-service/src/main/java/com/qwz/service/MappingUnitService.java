@@ -123,9 +123,87 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
      * 分页模糊查询所有单位
      **/
 
-    public PageInfo selectAllUnitVague(Integer pageNumber,Integer pageSize,String projectName){
-        return null;
+    public PageInfo selectAllUnitVague(Integer currentPage,Integer pageSize,String unitName) throws Exception {
+        if(currentPage == null && "".equals(currentPage)){
+            throw new Exception("pageNumber不能为空");
+        }
+        if (pageSize == null && "".equals(pageSize)){
+            throw new Exception("pageSize不能为空");
+        }
+        PageHelper.startPage(currentPage,pageSize);
+        List<MappingUnit> mappingUnits = mappingUnitMapper.selectAllUnitVague(unitName);
+        PageInfo<MappingUnit> mappingUnitPageInfo = new PageInfo<MappingUnit>(mappingUnits);
+        if(mappingUnitPageInfo!=null){
+            return mappingUnitPageInfo;
+        }else{
+            return null;
+        }
+    }
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 分页模糊查询待修改单位列表
+     **/
+    public PageInfo selectUnitNoUpdateAudit(Integer currentPage,Integer pageSize,String unitName) throws Exception {
+        if(currentPage == null && "".equals(currentPage)){
+            throw new Exception("pageNumber不能为空");
+        }
+        if (pageSize == null && "".equals(pageSize)){
+            throw new Exception("pageSize不能为空");
+        }
+        PageHelper.startPage(currentPage,pageSize);
+        List<MappingUnit> mappingUnits = mappingUnitMapper.selectUnitNoUpdateAudit(unitName);
+        PageInfo<MappingUnit> mappingUnitPageInfo = new PageInfo<MappingUnit>(mappingUnits);
+        if(mappingUnitPageInfo!=null && !"".equals(mappingUnitPageInfo)){
+                return mappingUnitPageInfo;
+        }else{
+            return null;
+        }
+    }
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 分页 模糊查询待审核单位列表
+     *
+     **/
+
+    public PageInfo selectUnitNoRegister(Integer currentPage,Integer pageSize,String unitName) throws Exception {
+        if(currentPage == null && "".equals(currentPage)){
+            throw new Exception("pageNumber不能为空");
+        }
+        if (pageSize == null && "".equals(pageSize)){
+            throw new Exception("pageSize不能为空");
+        }
+        List<MappingUnit> mappingUnits = mappingUnitMapper.selectUnitNoRegister(unitName);
+        PageInfo<MappingUnit> mappingUnitPageInfo = new PageInfo<>(mappingUnits);
+        if(mappingUnitPageInfo != null && !"".equals(mappingUnitPageInfo)){
+            return mappingUnitPageInfo;
+        }else{
+            return null;
+        }
     }
 
 
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据userId查询单位基本信息
+     **/
+
+    public MappingUnit selectUnitByUserId(MappingUnit mappingUnit){
+        if(mappingUnit!= null && !"".equals(mappingUnit)){
+            MappingUnit mappingUnit1 = super.selectOne(mappingUnit);
+            if(mappingUnit1!=null && !"".equals(mappingUnit1)){
+                return mappingUnit1;
+            }else{
+                return null;
+            }
+        }
+        return null;
+    }
 }
