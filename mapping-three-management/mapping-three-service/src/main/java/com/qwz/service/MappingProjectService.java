@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.qwz.base.BaseService;
 import com.qwz.mapper.MappingProjectMapper;
 import com.qwz.model.MappingProject;
+import com.qwz.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -112,11 +113,21 @@ public class MappingProjectService extends BaseService<MappingProject> {
      * @Date: 2020/7/16 21:42
      **/
     public PageInfo selectAdm(String projectType,Integer userid,Integer pageNumber,Integer pageSize){
+        //传入当前页和数量
         PageHelper.startPage(pageNumber,pageSize);
-        List<MappingProject> mappingProjects = mappingProjectMapper.selectAdm(projectType,userid);
-        PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<MappingProject>(mappingProjects);
-        if (mappingProjectPageInfo != null && !"".equals(mappingProjectPageInfo)){
-            return mappingProjectPageInfo;
+        try {
+            //调用查询方法
+            List<MappingProject> mappingProjects = mappingProjectMapper.selectAdm(projectType,userid);
+            //判断查询数据是否为空
+            if (mappingProjects != null && !"".equals(mappingProjects)){
+                //对查询出的数据进行分页
+                PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<MappingProject>(mappingProjects);
+                if (mappingProjectPageInfo != null && !"".equals(mappingProjectPageInfo)){
+                    return mappingProjectPageInfo;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return null;
     }
@@ -127,10 +138,109 @@ public class MappingProjectService extends BaseService<MappingProject> {
      * @Date: 2020/7/17 9:04
      **/
     public Integer insertAdm(MappingProject mappingProject){
+        //自动生成id
+        mappingProject.setId(Long.valueOf(IDUtils.getNum18()));
         if (mappingProject != null && !"".equals(mappingProject)){
-            int insert = mappingProjectMapper.insert(mappingProject);
-            if (insert > 0){
-                return insert;
+            try {
+                //调用通用Mapper的添加方法
+                int insert = mappingProjectMapper.insert(mappingProject);
+                //判断是否添加成功
+                if (insert > 0){
+                    return insert;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * @Description: 项目管理  修改项目
+     * @Author: Bing
+     * @Date: 2020/7/17 10:38
+     **/
+    public Integer updateAdm(MappingProject mappingProject){
+        if (mappingProject != null && !"".equals(mappingProject)){
+            try {
+                int updateByPrimaryKey = mappingProjectMapper.updateByPrimaryKey(mappingProject);
+                //判断是否添加成功
+                if (updateByPrimaryKey > 0){
+                    return updateByPrimaryKey;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * @Description: 项目管理  删除项目
+     * @Author: Bing
+     * @Date: 2020/7/17 10:42
+     **/
+    public Integer delectAdm(Long id){
+        //判断前端传值是否成功
+        if(id != null && !"".equals(id)){
+            try {
+                //根据id删除项目
+                int i = mappingProjectMapper.deleteByPrimaryKey(id);
+                if (i > 0){
+                    return i;
+                }else {
+                    return -1;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * @Description: 项目汇交
+     * @Author: Bing
+     * @Date: 2020/7/17 11:04
+     **/
+    public PageInfo selectRem(String projectType,Integer userid,Integer pageNumber,Integer pageSize){
+        //传入当前页和数量
+        PageHelper.startPage(pageNumber,pageSize);
+        try {
+            //调用查询方法
+            List<MappingProject> mappingProjects = mappingProjectMapper.selectRem(projectType,userid);
+            //判断查询数据是否为空
+            if (mappingProjects != null && !"".equals(mappingProjects)){
+                //对查询出的数据进行分页
+                PageInfo<MappingProject> mappingProjectPageInfo = new PageInfo<MappingProject>(mappingProjects);
+                if (mappingProjectPageInfo != null && !"".equals(mappingProjectPageInfo)){
+                    return mappingProjectPageInfo;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * @Description: 项目汇交  修改汇交信息
+     * @Author: Bing
+     * @Date: 2020/7/17 11:06
+     **/
+    public Integer updateRem(MappingProject mappingProject){
+        //判断是否获取到值
+        if (!"".equals(mappingProject) && mappingProject != null){
+            try {
+                //调用通用Mapper的修改方法
+                int update = mappingProjectMapper.updateByPrimaryKey(mappingProject);
+                //判断是否修改成功
+                if (update > 0){
+                    return update;
+                }
+                return -1;
+            }catch (Exception e){
+                e.printStackTrace();
             }
         }
         return -1;

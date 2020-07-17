@@ -131,8 +131,6 @@ public class MappingProjectController extends CommonController<MappingProject> {
      **/
     @PostMapping("/insertAdm")
     public ResultData insertAdm(/*@RequestBody*/ MappingProject mappingProject){
-        mappingProject.setId(Long.parseLong(IDUtils.getNum19()));
-       /* mappingProject.put("id",Long.parseLong(IDUtils.getNum19()));*/
         Integer insert = mappingProjectService.insertAdm(mappingProject);
         if (insert > 0){
             return super.addSuccess(insert);
@@ -140,6 +138,68 @@ public class MappingProjectController extends CommonController<MappingProject> {
             return super.addFailed();
         }
     }
+
+    /**
+     * @Description: 项目管理  修改项目
+     * @Author: Bing
+     * @Date: 2020/7/17 10:44
+     **/
+    @PostMapping("/updateAdm")
+    public ResultData updateAdm(/*@RequestBody*/ MappingProject mappingProject){
+        Integer integer = mappingProjectService.updateAdm(mappingProject);
+        if (integer > 0){
+            return super.updateSuccess(integer);
+        }else {
+            return super.updateFailed();
+        }
+    }
+
+    /**
+     * @Description:  项目管理  删除项目
+     * @Author: Bing
+     * @Date: 2020/7/17 10:46
+     **/
+    @PostMapping("/deleteAdm")
+    public ResultData deleteAdm(@RequestParam Long id){
+        Integer integer = mappingProjectService.delectAdm(id);
+        if (integer > 0){
+            return super.deleteSuccess(integer);
+        }else {
+            return super.deleteFailed();
+        }
+    }
+
+    /**
+     * @Description: 项目汇交  条件查询
+     * @Author: Bing
+     * @Date: 2020/7/17 11:04
+     **/
+    @PostMapping("/selectAdm")
+    public ResultData selectRem(@RequestParam String projectType,@RequestParam Integer userid,
+                                @RequestParam Integer pageNumber, @RequestParam Integer pageSize){
+        PageInfo pageInfo = mappingProjectService.selectRem(projectType, userid, pageNumber, pageSize);
+        if (pageInfo != null && !"".equals(pageInfo)){
+            return super.selectSuccess(pageInfo);
+        }else {
+            return  super.selectFailed();
+        }
+    }
+
+    /**
+     * @Description: 项目汇交  修改项目
+     * @Author: Bing
+     * @Date: 2020/7/17 11:13
+     **/
+    @PostMapping("/updateRem")
+    public ResultData updateRem(@RequestBody MappingProject mappingProject){
+        Integer integer = mappingProjectService.updateAdm(mappingProject);
+        if (integer > 0){
+            return  super.updateSuccess(integer);
+        }else {
+            return super.updateFailed();
+        }
+    }
+
 
     @Override
     public BaseService getBaseService() {
