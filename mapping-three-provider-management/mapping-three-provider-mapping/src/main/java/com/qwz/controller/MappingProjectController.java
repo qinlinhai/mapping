@@ -130,7 +130,7 @@ public class MappingProjectController extends CommonController<MappingProject> {
      * @Date: 2020/7/16 22:06
      **/
     @PostMapping("/insertAdm")
-    public ResultData insertAdm(/*@RequestBody*/ MappingProject mappingProject){
+    public ResultData insertAdm(@RequestBody MappingProject mappingProject){
         Integer insert = mappingProjectService.insertAdm(mappingProject);
         if (insert > 0){
             return super.addSuccess(insert);
@@ -145,7 +145,7 @@ public class MappingProjectController extends CommonController<MappingProject> {
      * @Date: 2020/7/17 10:44
      **/
     @PostMapping("/updateAdm")
-    public ResultData updateAdm(/*@RequestBody*/ MappingProject mappingProject){
+    public ResultData updateAdm(@RequestBody MappingProject mappingProject){
         Integer integer = mappingProjectService.updateAdm(mappingProject);
         if (integer > 0){
             return super.updateSuccess(integer);
@@ -174,7 +174,7 @@ public class MappingProjectController extends CommonController<MappingProject> {
      * @Author: Bing
      * @Date: 2020/7/17 11:04
      **/
-    @PostMapping("/selectAdm")
+    @PostMapping("/selectRem")
     public ResultData selectRem(@RequestParam String projectType,@RequestParam Integer userid,
                                 @RequestParam Integer pageNumber, @RequestParam Integer pageSize){
         PageInfo pageInfo = mappingProjectService.selectRem(projectType, userid, pageNumber, pageSize);
@@ -192,7 +192,7 @@ public class MappingProjectController extends CommonController<MappingProject> {
      **/
     @PostMapping("/updateRem")
     public ResultData updateRem(@RequestBody MappingProject mappingProject){
-        Integer integer = mappingProjectService.updateAdm(mappingProject);
+        Integer integer = mappingProjectService.updateRem(mappingProject);
         if (integer > 0){
             return  super.updateSuccess(integer);
         }else {

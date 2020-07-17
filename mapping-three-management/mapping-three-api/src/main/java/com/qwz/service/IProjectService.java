@@ -1,7 +1,9 @@
 package com.qwz.service;
 
 import com.qwz.base.ResultData;
+import com.qwz.model.CheckPerson;
 import com.qwz.model.LoginLog;
+import com.qwz.model.MappingProject;
 import com.qwz.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,4 +76,110 @@ public interface IProjectService {
      **/
     @PostMapping("/deleteOneNews")
     ResultData deleteOneNews(@RequestBody Map map);
+
+    /**
+     * @Description: 项目管理  查询登录用户管理的项目
+     * @Author: Bing
+     * @Date: 2020/7/16 21:49
+     **/
+    @PostMapping("/selectAdm")
+    ResultData selectAdm(@RequestParam String projectType,@RequestParam Integer userid,
+                                @RequestParam Integer pageNumber, @RequestParam Integer pageSize);
+
+    /**
+     * @Description: 项目管理，添加项目
+     * @Author: Bing
+     * @Date: 2020/7/16 22:06
+     **/
+    @PostMapping("/insertAdm")
+    ResultData insertAdm(@RequestBody MappingProject mappingProject);
+
+    /**
+     * @Description: 项目管理  修改项目
+     * @Author: Bing
+     * @Date: 2020/7/17 10:44
+     **/
+    @PostMapping("/updateAdm")
+    ResultData updateAdm(@RequestBody MappingProject mappingProject);
+
+    /**
+     * @Description:  项目管理  删除项目
+     * @Author: Bing
+     * @Date: 2020/7/17 10:46
+     **/
+    @PostMapping("/deleteAdm")
+    ResultData deleteAdm(@RequestParam Long id);
+
+    /**
+     * @Description: 项目汇交  条件查询
+     * @Author: Bing
+     * @Date: 2020/7/17 11:04
+     **/
+    @PostMapping("/selectAdm")
+    ResultData selectRem(@RequestParam String projectType,@RequestParam Integer userid,
+                                @RequestParam Integer pageNumber, @RequestParam Integer pageSize);
+
+    /**
+     * @Description: 项目汇交  修改项目
+     * @Author: Bing
+     * @Date: 2020/7/17 11:13
+     **/
+    @PostMapping("/updateRem")
+    ResultData updateRem(@RequestBody MappingProject mappingProject);
+
+    /**
+     * @Description: 查询抽查人员
+     * @Author: Bing
+     * @Date: 2020/7/16 16:19
+     **/
+    @PostMapping("/selectCheckPerson")
+    ResultData selectCheckPerson(@RequestParam HashMap hashMap);
+
+    /**
+     * @Description: 添加抽查人员
+     * @Author: Bing
+     * @Date: 2020/7/16 16:55
+     **/
+    @PostMapping("/insertCheckPerson")
+    ResultData insertCheckPerson(@RequestBody CheckPerson checkPerson);
+
+    /**
+     * @Description: 修改抽查人员信息
+     * @Author: Bing
+     * @Date: 2020/7/16 16:56
+     **/
+    @PostMapping("/updateCheckPerson")
+    ResultData updateCheckPerson(@RequestBody CheckPerson checkPerson);
+
+    /**
+     * @Description: 删除抽查人员
+     * @Author: Bing
+     * @Date: 2020/7/16 16:57
+     **/
+    @PostMapping("/delectOneCheckPerson")
+    ResultData delectOneCheckPerson(@RequestParam String id);
+
+    /**
+     * @Description: 批量删除抽查人员
+     * @Author: Bing
+     * @Date: 2020/7/16 17:01
+     **/
+    @PostMapping("/delectListCheckPerson")
+    ResultData delectListCheckPerson(@RequestParam String ids);
+
+    /**
+     * @Description: 查询白名单
+     * @Author: Bing
+     * @Date: 2020/7/16 11:46
+     **/
+    @PostMapping("/selectWhiteUnit")
+    ResultData selectWhiteUnit(@RequestParam HashMap hashMap);
+
+    /**
+     * @Description: 查询黑名单
+     * @Author: Bing
+     * @Date: 2020/7/16 11:46
+     **/
+    @PostMapping("/selectBlackUnit")
+    ResultData selectBlackUnit(@RequestParam HashMap hashMap);
 }
