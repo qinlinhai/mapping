@@ -198,7 +198,7 @@ public class MappingUnitController extends CommonController<MappingUnit> {
     * 根据userId查询单位的基本信息
     **/
    @PostMapping("/selectUnitByUserId")
-   public ResultData selectUnitByUserId(@RequestBody MappingUnit mappingUnit){
+   public ResultData selectUnitByUserId(MappingUnit mappingUnit){
        MappingUnit mappingUnit1 = mappingUnitService.selectUnitByUserId(mappingUnit);
        if(mappingUnit1!=null && !"".equals(mappingUnit1)){
            return super.selectSuccess("根据userId查询单位的基本信息成功",mappingUnit1);
