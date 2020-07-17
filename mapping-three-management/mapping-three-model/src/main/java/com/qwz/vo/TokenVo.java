@@ -27,4 +27,28 @@ public class TokenVo implements Serializable {
      * 4.系统异常
      */
     private Integer type;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Boolean getIfSuccess() {
+        return ifSuccess;
+    }
+
+    public void setIfSuccess(Boolean ifSuccess) {
+        this.ifSuccess = ifSuccess;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
 }
