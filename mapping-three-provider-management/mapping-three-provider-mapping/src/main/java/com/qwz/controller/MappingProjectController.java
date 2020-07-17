@@ -11,12 +11,14 @@ import com.qwz.model.ResultCommit;
 import com.qwz.service.AuditService;
 import com.qwz.service.MappingProjectService;
 import com.qwz.service.ResultCommitService;
+import com.qwz.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class MappingProjectController extends CommonController<MappingProject> {
@@ -27,6 +29,8 @@ public class MappingProjectController extends CommonController<MappingProject> {
     private ResultCommitService resultCommitService;
     @Autowired
     private AuditService auditService;
+
+
     @GetMapping("/selectSuccessRegister")
     public ResultData selectSuccessRegister(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize,
                                @RequestParam("searchName") String searchName) throws Exception {
@@ -121,13 +125,15 @@ public class MappingProjectController extends CommonController<MappingProject> {
     }
 
     /**
-     * @Description:
+     * @Description: 项目管理，添加项目
      * @Author: Bing
      * @Date: 2020/7/16 22:06
      **/
     @PostMapping("/insertAdm")
-    public ResultData insertAdm(@RequestBody Map map){
-        return  super.insert(map);
+    public ResultData insertAdm( Map mappingProject){
+        /*mappingProject.setId(Long.parseLong(IDUtils.getNum19()));*/
+        mappingProject.put("id",Long.parseLong(IDUtils.getNum19()));
+        return  super.insert(mappingProject);
     }
 
     @Override

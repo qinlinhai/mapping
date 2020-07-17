@@ -120,4 +120,19 @@ public class MappingProjectService extends BaseService<MappingProject> {
         }
         return null;
     }
+
+    /**
+     * @Description: 项目管理  添加项目
+     * @Author: Bing
+     * @Date: 2020/7/17 9:04
+     **/
+    public Integer insertAdm(MappingProject mappingProject){
+        if (mappingProject != null && !"".equals(mappingProject)){
+            int insert = mappingProjectMapper.insert(mappingProject);
+            if (insert > 0){
+                return insert;
+            }
+        }
+        return -1;
+    }
 }
