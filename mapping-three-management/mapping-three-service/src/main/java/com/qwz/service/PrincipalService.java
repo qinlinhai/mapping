@@ -27,7 +27,7 @@ public class PrincipalService extends BaseService<Principal> {
            PageHelper.startPage(currentPage,pageSize);
            if(userId!=null && !"".equals(userId)){
                List<Principal> principals = principalMapper.selectPrincipal(userId);
-               PageInfo<Principal> principalPageInfo = new PageInfo<>(principals);
+               PageInfo<Principal> principalPageInfo = new PageInfo<Principal>(principals);
                if(principalPageInfo!=null){
                    return principalPageInfo;
                }else{

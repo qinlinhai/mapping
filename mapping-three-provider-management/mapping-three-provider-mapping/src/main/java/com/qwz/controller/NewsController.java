@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @description:
@@ -52,18 +53,8 @@ public class NewsController extends CommonController<News> {
      * @Author: Bing
      * @Date: 2020/7/16 9:22
      **/
-    /*@PostMapping("/insertNews")
-    public ResultData insertNews( Map map){
-        return super.insert(map);
-    }*/
     @PostMapping("/insertNews")
-    public ResultData insert(@RequestParam String title, @RequestParam String digest,
-                             @RequestParam String body){
-        News news = new News();
-        news.setTitle(title);
-        news.setDigest(digest);
-        news.setBody(body);
-        news.setGmtCreate(new Date());
+    public ResultData insert(/*@RequestBody*/ News news){
         Integer integer = newsService.insertNews(news);
         if (integer > 0){
             return super.addSuccess(integer);
@@ -77,18 +68,13 @@ public class NewsController extends CommonController<News> {
      * @Author: Bing
      * @Date: 2020/7/16 9:22
      **/
-    /*@PostMapping("/updateNews")
-    public ResultData updateNews(@RequestBody Map map){
-        return updateOne(map);
-    }*/
     @PostMapping("/updateNews")
-    public ResultData updateNews(@RequestBody News news){
-        news.setGmtModified(new Date());
+    public ResultData updateNews(/*@RequestBody*/ News news){
         Integer updateNews = newsService.updateNews(news);
         if (updateNews > 0){
-            return super.addSuccess(updateNews);
+            return super.updateSuccess(updateNews);
         }else {
-            return super.addFailed();
+            return super.updateFailed();
         }
     }
 
@@ -98,8 +84,13 @@ public class NewsController extends CommonController<News> {
      * @Date: 2020/7/16 9:22
      **/
     @PostMapping("/deleteNews")
-    public ResultData deleteNews(@RequestParam String ids){
-        return deleteByIds(ids);
+    public ResultData deleteNews(@RequestParam List<Integer> ids){
+        Integer integer = newsService.delectListNews(ids);
+        if (integer > 0){
+            return  super.deleteSuccess(integer);
+        }else {
+            return super.deleteFailed();
+        }
     }
 
     /**
@@ -107,10 +98,6 @@ public class NewsController extends CommonController<News> {
      * @Author: Bing
      * @Date: 2020/7/16 11:16
      **/
-    /*@PostMapping("/deleteOneNews")
-    public ResultData deleteOneNews( Map map){
-        return deleteOne(map);
-    }*/
     @PostMapping("/deleteOneNews")
     public ResultData deleteOneNews(@RequestParam String id){
         Integer delectNews = newsService.delectNews(id);
@@ -120,4 +107,5 @@ public class NewsController extends CommonController<News> {
             return super.deleteFailed();
         }
     }
+
 }
