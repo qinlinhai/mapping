@@ -9,10 +9,7 @@ import com.qwz.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class MappingProjectService extends BaseService<MappingProject> {
@@ -266,5 +263,15 @@ public class MappingProjectService extends BaseService<MappingProject> {
             }
         }
         return null;
+    }
+
+    /**
+     * @Description: 首页测绘项目查询
+     * @Author: Bing
+     * @Date: 2020/7/18 15:04
+     **/
+    public List<MappingProject> selectShow(String projectType, String projectName, String startDate){
+        List<MappingProject> mappingProjects = mappingProjectMapper.selectShow(projectType, projectName, startDate);
+        return mappingProjects;
     }
 }

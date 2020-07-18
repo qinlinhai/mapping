@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,6 +94,7 @@ public interface MappingProjectMapper extends Mapper<MappingProject> {
      * @Date: 2020/7/17 11:03
      **/
     List<MappingProject> selectRem(@Param("projectType") String projectType,@Param("userid") Integer userid);
+
     /**
      * @author  qlh
      * @date   2020/7/17
@@ -100,4 +102,11 @@ public interface MappingProjectMapper extends Mapper<MappingProject> {
      * 根据userId查询项目列表
      **/
     List<MappingProject> selectProjectByUserId(Integer userId);
+
+    /**
+     * @Description: 首页测绘项目查询
+     * @Author: Bing
+     * @Date: 2020/7/18 14:48
+     **/
+    List<MappingProject> selectShow(@Param("projectType") String projectType, @Param("projectName") String projectName, @Param("startDate") String startDate);
 }

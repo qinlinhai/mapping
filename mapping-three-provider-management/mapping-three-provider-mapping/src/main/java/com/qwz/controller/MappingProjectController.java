@@ -217,6 +217,23 @@ public class MappingProjectController extends CommonController<MappingProject> {
             return super.selectFailed("根据userId查询单位所属项目失败");
         }
     }
+
+    /**
+     * @Description: 首页测绘项目查询
+     * @Author: Bing
+     * @Date: 2020/7/18 15:07
+     **/
+    @PostMapping("/selectShow")
+    public ResultData selectShow(@RequestParam String projectType,@RequestParam String projectName,
+                                 @RequestParam String startDate ){
+        List<MappingProject> mappingProjects = mappingProjectService.selectShow(projectType, projectName, startDate);
+        if (mappingProjects != null && !"".equals(mappingProjects)){
+            return super.selectSuccess(mappingProjects);
+        }else {
+            return super.selectFailed();
+        }
+    }
+
     @Override
     public BaseService getBaseService() {
         return null;

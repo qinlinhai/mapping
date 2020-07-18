@@ -99,8 +99,23 @@
     </if>
   </select>
 
-
   <select id="selectProjectByUserId" resultMap="BaseResultMap">
     select * from t_mapping_project where user_id=#{userId}
+  </select>
+
+  <select id="selectShow" resultMap="BaseResultMap">
+    select * from t_mapping_project
+    <where>
+      1=1
+      <if test="projectName!=null and projectName!= ''">
+         and project_name like concat('%',#{projectName},'%')
+      </if>
+      <if test="projectType!=null and projectType!=''">
+         and project_type=#{projectType}
+      </if>
+      <if test="startDate != null and startDate != ''">
+         and start_date=#{startDate}
+      </if>
+    </where>
   </select>
 </mapper>
