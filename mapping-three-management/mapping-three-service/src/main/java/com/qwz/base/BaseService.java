@@ -79,7 +79,7 @@ public abstract class BaseService<T> {
 
     public  Integer deleteByIds(List<Integer> ids){
         Example example=Example.builder(getTypeArguement()).where(Sqls.custom().andIn("id",ids)).build();
-        return mapper.deleteByPrimaryKey(example);
+        return mapper.deleteByExample(example);
     }
     /**
      * @author  qlh
@@ -89,7 +89,7 @@ public abstract class BaseService<T> {
      **/
 
     public Integer update(T t){
-        return mapper.updateByPrimaryKey(t);
+        return mapper.updateByPrimaryKeySelective(t);
     }
     /**
      * @author  qlh
