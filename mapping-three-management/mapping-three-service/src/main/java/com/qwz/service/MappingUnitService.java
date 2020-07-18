@@ -289,6 +289,22 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
         return null;
     }
 
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 根据单位的 name level area查询单位
+     **/
+
+        public List<MappingUnit> selectUnitBynameAndLevelAndArea(String unitName,String unitLevel,String unitArea){
+                List<MappingUnit> mappingUnits = mappingUnitMapper.selectUnitBynameAndLevelAndArea(unitName, unitArea, unitLevel);
+
+                if(mappingUnits!=null&& mappingUnits.size()>0){
+                    return mappingUnits;
+                }else{
+                    return null;
+                }
+        }
 
 
 }

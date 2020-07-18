@@ -26,4 +26,18 @@
     select * from t_result_commit where id=#{id}
   </select>
 
+
+  <select id="selectResultCommitByNmeAndTypeAndDate" resultType="map">
+    select mp.*,rc.* from t_mapping_project mp join t_result_commit rc on mp.id=rc.ref_id where 1=1
+    <if test="name!=null and name!=''">
+      and rc.name like concat('%',#{name},'%')
+    </if>
+    <if test="type!=null and type!=''">
+      and mp.project_type=#{type}
+    </if>
+
+    <if test="date!=null and date!=''">
+      and rc.result_date=#{date}
+    </if>
+  </select>
 </mapper>

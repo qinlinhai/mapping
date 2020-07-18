@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class ResultCommitService extends BaseService<ResultCommit> {
 
@@ -21,5 +23,22 @@ public class ResultCommitService extends BaseService<ResultCommit> {
             return null;
         }
 
+    }
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 根据 成果名称 项目类型  成果日期
+     **/
+
+    public List<Map> selectResultCommitByNmeAndTypeAndDate(String name,String type,String date){
+        List<Map> maps = resultCommitMapper.selectResultCommitByNmeAndTypeAndDate(name, type, date);
+        if(maps!=null && maps.size()>0){
+            return maps;
+        }else{
+            return null;
+        }
     }
 }

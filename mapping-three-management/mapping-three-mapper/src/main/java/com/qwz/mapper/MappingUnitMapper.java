@@ -146,4 +146,15 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
      * 双随机抽查单位
      **/
     List<MappingUnit> selectUnitRandom(@Param("randomCount") Integer randomCount,@Param("ownedDistrict") String ownedDistrict);
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 根据单位名称 资质等级 单位地址查询单位
+     **/
+
+    List<MappingUnit> selectUnitBynameAndLevelAndArea(@Param("unitName") String unitName,@Param("unitArea") String unitArea,
+                                                      @Param("unitLevel") String unitLevel);
 }

@@ -245,4 +245,21 @@ public class MappingUnitController extends CommonController<MappingUnit> {
         }
     }
 
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 根据单位的name level area查询单位
+     **/
+    @GetMapping("/selectUnitBynameAndLevelAndArea")
+    public ResultData selectUnitBynameAndLevelAndArea(@RequestParam("unitName") String unitName,@RequestParam("unitLevel") String unitLevel,
+                                                      @RequestParam("unitArea") String unitArea){
+        List<MappingUnit> mappingUnits = mappingUnitService.selectUnitBynameAndLevelAndArea(unitName, unitLevel, unitArea);
+        if(mappingUnits!=null&&mappingUnits.size()>0){
+            return super.selectSuccess("根据单位的name level area查询单位成功",mappingUnits);
+        }else{
+            return super.selectFailed("根据单位的name level area查询单位失败");
+        }
+    }
+
 }

@@ -147,4 +147,18 @@
 
     ORDER BY RAND() LIMIT #{randomCount}
   </select>
+
+
+  <select id="selectUnitBynameAndLevelAndArea" resultMap="BaseResultMap">
+    select * from t_mapping_unit where 1=1
+    <if test="unitName!=null and unitName!=''">
+      and unit_name like concat('%',#{unitName},'%')
+    </if>
+    <if test="unitArea!=null and unitArea!=''">
+      and owned_district=#{unitArea}
+    </if>
+    <if test="unitLevel!=null and unitLevel!=''">
+      and qualification_level=#{unitLevel}
+    </if>
+  </select>
 </mapper>
