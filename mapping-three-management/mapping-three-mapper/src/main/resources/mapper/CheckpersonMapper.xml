@@ -12,7 +12,7 @@
     <result column="memo" property="memo" jdbcType="VARCHAR" />
   </resultMap>
 
-  <select id="selectCheckPerson" resultType="com.qwz.model.CheckPerson">
-      select id,name,unit_name,duty,phone from t_check_person
+  <select id="selectCheckPerson" resultMap="BaseResultMap">
+      select * from t_check_person order by RAND() limit #{random}
   </select>
 </mapper>

@@ -29,13 +29,19 @@ public class CheckPersonService extends BaseService<CheckPerson> {
      * @Author: Bing
      * @Date: 2020/7/16 16:12
      **/
-    public PageInfo selectCheckPerson(HashMap hashMap){
-
-        PageHelper.startPage(Integer.parseInt(hashMap.get("pageNumber")+""),Integer.parseInt(hashMap.get("pageSize")+""));
-        PageInfo pageInfo = new PageInfo(checkpersonMapper.selectCheckPerson());
-        if (null != pageInfo && !"".equals(pageInfo)){
-            return pageInfo;
-        }
+    public PageInfo selectCheckPerson(double random,Integer pageNumber,Integer pageSize){
+        //判断前端是否获取值
+            //获取表中总数据
+            int hang = checkpersonMapper.selectHang();
+            //获取应展示的数据条数
+            int random1 = (int)Math.ceil(random * hang);
+            Integer random2=random1;
+            PageHelper.startPage(pageNumber,pageSize);
+            List<CheckPerson> checkPeople = checkpersonMapper.selectCheckPerson(random2);
+            PageInfo<CheckPerson> checkPersonPageInfo = new PageInfo<CheckPerson>(checkPeople);
+            if (null != checkPersonPageInfo && !"".equals(checkPersonPageInfo)){
+                return checkPersonPageInfo;
+            }
         return null;
     }
 

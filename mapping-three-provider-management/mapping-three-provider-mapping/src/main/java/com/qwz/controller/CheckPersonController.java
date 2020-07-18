@@ -36,8 +36,9 @@ public class CheckPersonController extends CommonController<CheckPerson> {
      * @Date: 2020/7/16 16:19
      **/
     @PostMapping("/selectCheckPerson")
-    public ResultData selectCheckPerson(@RequestParam HashMap hashMap){
-        PageInfo pageInfo = checkPersonService.selectCheckPerson(hashMap);
+    public ResultData selectCheckPerson(@RequestParam Double random,@RequestParam Integer pageNumber,
+                                        @RequestParam Integer pageSize){
+        PageInfo pageInfo = checkPersonService.selectCheckPerson(random, pageNumber, pageSize);
         if (null != pageInfo && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
         }else {
