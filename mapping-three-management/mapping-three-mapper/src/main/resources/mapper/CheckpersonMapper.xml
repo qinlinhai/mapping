@@ -12,7 +12,9 @@
     <result column="memo" property="memo" jdbcType="VARCHAR" />
   </resultMap>
 
+
   <select id="selectCheckPerson" resultMap="BaseResultMap">
-      select * from t_check_person order by RAND() limit #{random}
+      SELECT * FROM t_check_person ORDER BY RAND() LIMIT #{random}
   </select>
+
 </mapper>

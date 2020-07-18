@@ -269,6 +269,7 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
 
     public PageInfo selectUnitRandom(Integer currentPage,Integer pageSize,double random,String ownedDistrict){
         if(currentPage!=null && pageSize!=null){
+            PageHelper.startPage(currentPage,pageSize);
             int i = mappingUnitMapper.selectUnitCount();
             int randomCount= (int) (random*i);
             Integer randomCount1=randomCount;
