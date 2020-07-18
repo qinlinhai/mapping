@@ -123,4 +123,28 @@
     select r.name filename,r.size filesize,r.path filepath
     from t_mapping_unit mn left join t_resource r on mn.id=r.ref_biz_id where mn.user_id=#{userId}
   </select>
+
+
+
+  <select id="selectUnitRandom" resultMap="BaseResultMap">
+   SELECT * FROM t_mapping_unit where 1=1
+    <if test="ownedDistrict == '江城区单位'.toString()">
+        and owned_district='江城区'
+    </if>
+
+    <if test="ownedDistrict == '阳春市单位'.toString()">
+      and owned_district='阳春市'
+    </if>
+    <if test="ownedDistrict == '阳东区单位'.toString()">
+      and owned_district='阳东区'
+    </if>
+    <if test="ownedDistrict == '阳西县单位'.toString()">
+      and owned_district='阳西县'
+    </if>
+    <if test="ownedDistrict == '外地单位'.toString()">
+      and owned_district not in ('江城区','阳春市','阳东区','阳西县')
+    </if>
+
+    ORDER BY RAND() LIMIT #{randomCount}
+  </select>
 </mapper>

@@ -129,4 +129,21 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
     @Update("update t_mapping_unit set audit_status=#{auditStatus} where id=#{unitId}")
     int updateUnitAuditstatus(@Param("auditStatus") Integer auditStatus,@Param("unitId") Long unitId);
 
+
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 查询单位表的总行数
+     **/
+    @Select("select count(1) from t_mapping_unit")
+    int selectUnitCount();
+
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 双随机抽查单位
+     **/
+    List<MappingUnit> selectUnitRandom(@Param("randomCount") Integer randomCount,@Param("ownedDistrict") String ownedDistrict);
 }

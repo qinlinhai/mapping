@@ -228,6 +228,21 @@ public class MappingUnitController extends CommonController<MappingUnit> {
    }
 
 
-
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 双随机抽查单位
+     **/
+    @PostMapping("/selectUnitRandom")
+    public ResultData selectUnitRandom(@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize") Integer pageSize,
+                                       @RequestParam("random") double randmon,@RequestParam("ownedDistrict") String ownedDistrict){
+        PageInfo pageInfo = mappingUnitService.selectUnitRandom(currentPage, pageSize, randmon,ownedDistrict);
+        if(pageInfo!=null){
+            return super.selectSuccess("双随机抽查单位成功",pageInfo);
+        }else{
+            return super.selectFailed("双随机抽查单位失败");
+        }
+    }
 
 }

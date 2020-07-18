@@ -260,4 +260,34 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
         return null;
     }
 
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 分页双随机抽查单位
+     **/
+
+    public PageInfo selectUnitRandom(Integer currentPage,Integer pageSize,double random,String ownedDistrict){
+        if(currentPage!=null && pageSize!=null){
+            int i = mappingUnitMapper.selectUnitCount();
+            int randomCount= (int) (random*i);
+            Integer randomCount1=randomCount;
+            if(randomCount1!=null){
+                List<MappingUnit> mappingUnits = mappingUnitMapper.selectUnitRandom(randomCount1,ownedDistrict);
+                if(mappingUnits!=null){
+                    PageInfo<MappingUnit> mappingUnitPageInfo = new PageInfo<MappingUnit>(mappingUnits);
+                    if(mappingUnitPageInfo!=null){
+                        return mappingUnitPageInfo;
+                    }else{
+                        return null;
+                    }
+                }
+            }
+
+        }
+        return null;
+    }
+
+
+
 }
