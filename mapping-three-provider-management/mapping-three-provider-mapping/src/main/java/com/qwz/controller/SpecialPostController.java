@@ -8,6 +8,7 @@ import com.qwz.model.SpecialPost;
 import com.qwz.service.SpecialPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,6 +58,51 @@ public class SpecialPostController extends CommonController {
         }else {
             return super.selectFailed();
         }
+    }
 
+    /**
+     * @Description: 添加特殊人员信息
+     * @Author: Bing
+     * @Date: 2020/7/20 21:29
+     **/
+    @PostMapping("/insertSpecial")
+    public ResultData insertSpecial(/*@RequestBody*/ SpecialPost specialPost,@RequestParam String path,
+                                    @RequestParam Long userid){
+        Boolean aBoolean = specialPostService.insertSpecial(specialPost, path, userid);
+        if (aBoolean){
+            return super.addSuccess(aBoolean);
+        }else {
+            return super.addFailed();
+        }
+    }
+
+    /**
+     * @Description: 修改特殊人员信息
+     * @Author: Bing
+     * @Date: 2020/7/20 21:30
+     **/
+    @PostMapping("/updateSpecial")
+    public ResultData updateSpecial(@RequestBody SpecialPost specialPost){
+        Boolean aBoolean = specialPostService.updateSpecial(specialPost);
+        if (aBoolean){
+            return super.updateSuccess(aBoolean);
+        }else {
+            return super.updateFailed();
+        }
+    }
+
+    /**
+     * @Description: 删除特殊人员信息
+     * @Author: Bing
+     * @Date: 2020/7/20 21:32
+     **/
+    @PostMapping("/deleteSpecial")
+    public ResultData deleteSpecial(@RequestParam Long id){
+        Integer integer = specialPostService.deleteSpecial(id);
+        if (integer > 0){
+            return super.deleteSuccess(integer);
+        }else {
+            return super.deleteFailed();
+        }
     }
 }
