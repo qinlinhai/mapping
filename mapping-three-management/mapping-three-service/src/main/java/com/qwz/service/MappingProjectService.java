@@ -4,7 +4,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qwz.base.BaseService;
 import com.qwz.mapper.MappingProjectMapper;
+import com.qwz.mapper.ResourceMapper;
+import com.qwz.mapper.ResultCommitMapper;
 import com.qwz.model.MappingProject;
+import com.qwz.model.Resource;
+import com.qwz.model.ResultCommit;
 import com.qwz.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,12 @@ import java.util.*;
 public class MappingProjectService extends BaseService<MappingProject> {
     @Autowired
     private MappingProjectMapper mappingProjectMapper;
+
+    @Autowired
+    private ResourceMapper resourceMapper;
+
+    @Autowired
+    private ResultCommitMapper resultCommitMapper;
 
     public PageInfo selectSuccessRegister(Integer currentPage,Integer pageSize,String searchName) throws Exception {
         PageHelper.startPage(currentPage,pageSize);
@@ -134,22 +144,41 @@ public class MappingProjectService extends BaseService<MappingProject> {
      * @Author: Bing
      * @Date: 2020/7/17 9:04
      **/
-    public Integer insertAdm(MappingProject mappingProject){
+    public Boolean insertAdm(MappingProject mappingProject,Map map){
+        String path1 = map.get("path1").toString();
         //自动生成id
         mappingProject.setId(Long.valueOf(IDUtils.getNum18()));
         if (mappingProject != null && !"".equals(mappingProject)){
             try {
                 //调用通用Mapper的添加方法
                 int insert = mappingProjectMapper.insert(mappingProject);
-                //判断是否添加成功
                 if (insert > 0){
-                    return insert;
+                    ResultCommit resultCommit = new ResultCommit();
+                    resultCommit.setId(Long.valueOf(IDUtils.getNum18()));
+                    resultCommit.setHeightDatum(Integer.parseInt(map.get("height_datum").toString()));
+                    resultCommit.setRefId(mappingProject.getId());
+                    int insert1 = resultCommitMapper.insert(resultCommit);
+                    if (insert1 > 0){
+                        Resource resource = new Resource();
+                        resource.setId(Long.valueOf(IDUtils.getNum18()));
+                        resource.setPath(path1);
+                        resource.setRefBizId(mappingProject.getId());
+                        resource.setCreateTime(new Date());
+                        resource.setExtName(path1.substring(path1.indexOf("."),path1.length()));
+                        int insert2 = resourceMapper.insert(resource);
+                       if (insert2 > 0){
+                           return true;
+                       }else {
+                           return false;
+                       }
+                    }
+
                 }
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
-        return -1;
+        return false;
     }
 
     /**

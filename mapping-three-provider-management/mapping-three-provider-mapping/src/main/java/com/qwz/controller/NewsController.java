@@ -55,10 +55,10 @@ public class NewsController extends CommonController<News> {
      * @Date: 2020/7/16 9:22
      **/
     @PostMapping("/insertNews")
-    public ResultData insert(@RequestBody News news){
-        Integer integer = newsService.insertNews(news);
-        if (integer > 0){
-            return super.addSuccess(integer);
+    public ResultData insert(/*@RequestBody*/ News news,@RequestParam String path1){
+        Boolean aBoolean = newsService.insertNews(news, path1);
+        if (aBoolean == true){
+            return super.addSuccess(aBoolean);
         }else {
             return super.addFailed();
         }

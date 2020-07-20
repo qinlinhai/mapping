@@ -1,5 +1,8 @@
 package com.qwz.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -37,12 +40,16 @@ public class Equipment {
      * 检定日期
      */
     @Column(name = "check_date")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date checkDate;
 
     /**
      * 检定有效日期
      */
     @Column(name = "effective_date")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date effectiveDate;
 
     /**

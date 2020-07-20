@@ -8,6 +8,7 @@ import com.qwz.model.Technicist;
 import com.qwz.service.TechnicistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,6 +57,51 @@ public class TechnicistController extends CommonController<Technicist> {
             return super.selectSuccess(technicists);
         }else {
             return super.selectFailed();
+        }
+    }
+
+    /**
+     * @Description: 添加技术人员基础信息
+     * @Author: Bing
+     * @Date: 2020/7/20 20:41
+     **/
+    @PostMapping("/insertTec")
+    public ResultData insertTec(@RequestBody Technicist technicist,@RequestParam Long userid){
+        Integer integer = technicistService.insertTec(technicist, userid);
+        if (integer > 0){
+            return super.addSuccess(integer);
+        }else {
+            return super.addFailed();
+        }
+    }
+
+    /**
+     * @Description: 修改技术人员基础信息
+     * @Author: Bing
+     * @Date: 2020/7/20 20:43
+     **/
+    @PostMapping("/updateTec")
+    public ResultData updateTec(@RequestBody Technicist technicist){
+        Integer integer = technicistService.updateTec(technicist);
+        if (integer > 0){
+            return super.updateSuccess(integer);
+        }else {
+            return super.updateFailed();
+        }
+    }
+
+    /**
+     * @Description: 删除技术人员基础信息
+     * @Author: Bing
+     * @Date: 2020/7/20 20:44
+     **/
+    @PostMapping("/deleteTec")
+    public ResultData deleteTec(@RequestParam Long id){
+        Integer integer = technicistService.deleteTec(id);
+        if (integer > 0){
+            return super.deleteSuccess(integer);
+        }else {
+            return super.deleteFailed();
         }
     }
 }

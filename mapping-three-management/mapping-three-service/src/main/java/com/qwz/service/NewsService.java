@@ -4,11 +4,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qwz.base.BaseService;
 import com.qwz.mapper.NewsMapper;
+import com.qwz.mapper.ResourceMapper;
 import com.qwz.model.News;
+import com.qwz.model.Resource;
 import com.qwz.utils.IDUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.Sqls;
 
@@ -25,6 +28,9 @@ import java.util.List;
 public class NewsService extends BaseService<News> {
     @Autowired
     private NewsMapper newsMapper;
+
+    @Autowired
+    private ResourceMapper resourceMapper;
 
     /**
      * @Description: 查询新闻信息
@@ -45,7 +51,8 @@ public class NewsService extends BaseService<News> {
      * @Author: Bing
      * @Date: 2020/7/16 9:05
      **/
-    public Integer insertNews(News news){
+    public Boolean insertNews(News news,String path1){
+
         //生成ID
         news.setId(Long.valueOf(IDUtils.getNum18()));
         //创建时间
@@ -55,14 +62,24 @@ public class NewsService extends BaseService<News> {
             try {
                 int insert = newsMapper.insert(news);
                 if (insert > 0){
-                    return insert;
+                    Resource resourcer = new Resource();
+                    resourcer.setId(Long.valueOf(IDUtils.getNum18()));
+                    resourcer.setPath(path1);
+                    resourcer.setRefBizId(news.getId());
+                    resourcer.setCreateTime(new Date());
+                    resourcer.setExtName(path1.substring(path1.indexOf("."),path1.length()));
+                    int insert1 = resourceMapper.insert(resourcer);
+                    if (insert1 > 0){
+                        return true;
+                    }else {
+                        return false;
+                    }
                 }
-                return -1;
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
-        return -1;
+        return false;
     }
 
     /**
@@ -110,4 +127,5 @@ public class NewsService extends BaseService<News> {
         Example example=Example.builder(getTypeArguement()).where(Sqls.custom().andIn("id",ids)).build();
         return newsMapper.deleteByPrimaryKey(example);
     }
+
 }

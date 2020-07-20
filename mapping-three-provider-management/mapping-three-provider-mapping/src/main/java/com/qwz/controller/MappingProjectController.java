@@ -130,10 +130,10 @@ public class MappingProjectController extends CommonController<MappingProject> {
      * @Date: 2020/7/16 22:06
      **/
     @PostMapping("/insertAdm")
-    public ResultData insertAdm(@RequestBody MappingProject mappingProject){
-        Integer insert = mappingProjectService.insertAdm(mappingProject);
-        if (insert > 0){
-            return super.addSuccess(insert);
+    public ResultData insertAdm(/*@RequestBody*/ MappingProject mappingProject,@RequestParam Map map){
+        Boolean aBoolean = mappingProjectService.insertAdm(mappingProject, map);
+        if (aBoolean){
+            return super.addSuccess(aBoolean);
         }else {
             return super.addFailed();
         }
