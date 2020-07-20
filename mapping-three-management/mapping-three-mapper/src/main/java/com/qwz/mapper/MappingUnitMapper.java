@@ -22,7 +22,7 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
      * 根据资质等级分组查询单位
      **/
     @Select("select count(qualification_level) levelCount,qualification_level level from t_mapping_unit GROUP BY qualification_level")
-    public List<Map> selectQualification();
+    List<Map> selectQualification();
     /**
      * @author  qlh
      * @date   2020/7/16
@@ -157,4 +157,7 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
 
     List<MappingUnit> selectUnitBynameAndLevelAndArea(@Param("unitName") String unitName,@Param("unitArea") String unitArea,
                                                       @Param("unitLevel") String unitLevel);
+
+
+    
 }

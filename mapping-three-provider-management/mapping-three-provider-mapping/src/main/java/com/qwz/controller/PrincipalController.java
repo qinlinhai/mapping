@@ -6,9 +6,12 @@ import com.qwz.base.CommonController;
 import com.qwz.base.ResultData;
 import com.qwz.model.Principal;
 import com.qwz.service.PrincipalService;
+import com.qwz.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.commons.util.IdUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.Result;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +54,54 @@ public class PrincipalController extends CommonController<Principal> {
             return super.selectSuccess("查询负责人信息附件成功",maps);
         }else{
             return super.selectFailed("查询失败");
+        }
+    }
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 新增一个负责人信息
+     **/
+    @PostMapping("/addPrincipal")
+    public ResultData  addPrincipal(Principal principal){
+        principal.setId(Long.valueOf(IDUtils.getNum18().toString()));
+        Boolean aBoolean = principalService.addPrincipal(principal);
+        if(aBoolean){
+            return super.addSuccess("新增负责人信息成功");
+        }else{
+            return super.addFailed("新增负责人信息失败");
+        }
+    }
+
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 修改负责人信息
+     **/
+    @PostMapping("/updatePrincipal")
+    public ResultData updatePrincipal(Principal principal){
+
+        Boolean aBoolean = principalService.updatePrincipal(principal);
+        if(aBoolean){
+            return super.updateSuccess("修改负责人信息成功");
+        }else{
+            return super.updateFailed("修改负责人信息失败");
+        }
+    }
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 删除负责人信息
+     **/
+    @PostMapping("/deletePrincipal")
+    public ResultData deletePrincipal(Principal principal){
+        Boolean aBoolean = principalService.deletePrincipal(principal);
+        if(aBoolean){
+            return super.deleteSuccess("删除负责人成功");
+        }else{
+            return super.deleteFailed("删除负责人失败");
         }
     }
 

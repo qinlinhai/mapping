@@ -262,4 +262,33 @@ public class MappingUnitController extends CommonController<MappingUnit> {
         }
     }
 
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     *  添加一个企业用户
+     **/
+    @PostMapping("/addUnit")
+    public ResultData addUnit(@RequestParam Map map){
+        ResultData insert = super.insert(map);
+        return insert;
+    }
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 修改单位信息
+     **/
+    @PostMapping("/updateUnit")
+    public ResultData updateUnit(MappingUnit mappingUnit){
+        Boolean aBoolean = mappingUnitService.updateUnit(mappingUnit);
+        if(aBoolean){
+            return super.updateSuccess("修改单位信息");
+        }else{
+            return super.updateFailed();
+        }
+    }
+
 }

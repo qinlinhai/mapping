@@ -306,5 +306,23 @@ public class MappingUnitService  extends BaseService<MappingUnit> {
                 }
         }
 
+        /**
+         * @author  qlh
+         * @date   2020/7/20
+         * @desc
+         * 修改单位信息
+         **/
+        public Boolean updateUnit(MappingUnit mappingUnit){
+            if(mappingUnit!=null){
+                Integer update = super.update(mappingUnit);
+                if(update>0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            return false;
+        }
+
 
 }

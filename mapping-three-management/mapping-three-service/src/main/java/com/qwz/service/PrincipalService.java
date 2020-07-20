@@ -1,10 +1,12 @@
 package com.qwz.service;
 
+import com.fasterxml.jackson.databind.ser.std.StdArraySerializers;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qwz.base.BaseService;
 import com.qwz.mapper.PrincipalMapper;
 import com.qwz.model.Principal;
+import com.qwz.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,4 +55,59 @@ public class PrincipalService extends BaseService<Principal> {
         }
         return null;
     }
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 新增一条单位负责人信息
+     **/
+    public Boolean addPrincipal(Principal principal){
+        if(principal!=null){
+            Integer insert = super.insert(principal);
+            if(insert>0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 修改单位负责人信息
+     **/
+    public Boolean updatePrincipal(Principal principal){
+        if(principal!=null){
+            Integer update = super.update(principal);
+            if(update>0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 删除单位负责人
+     **/
+    public  Boolean deletePrincipal(Principal principal){
+        if(principal!=null){
+            Integer integer = super.deleteByPrimaryKey(principal);
+            if(integer>0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
+
+
+
 }
