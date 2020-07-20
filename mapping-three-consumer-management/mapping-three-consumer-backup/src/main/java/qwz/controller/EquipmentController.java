@@ -17,13 +17,12 @@ import java.util.HashMap;
  * @time: 2020/7/17 19:45
  */
 @RestController
-public class EquipmentController extends BaseController {
+public class EquipmentController {
 
     @Autowired
     private IProjectService iProjectService;
 
     @PostMapping("/selectEquipment")
-    @ApiOperation(value = "分页查询仪器设备信息",notes = "仪器设备信息的查询")
     public ResultData selectEquipment(@RequestParam Integer userid,@RequestParam Integer pageNumber,
                                       @RequestParam Integer pageSize){
         ResultData resultData = iProjectService.selectEquipment(userid, pageNumber, pageSize);

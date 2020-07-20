@@ -44,4 +44,7 @@ public class SpecialPostService extends BaseService<SpecialPost> {
         List<SpecialPost> specialPosts = specialPostMapper.selectIdSpecial(id);
         return specialPosts;
     }
+
+
+
 }

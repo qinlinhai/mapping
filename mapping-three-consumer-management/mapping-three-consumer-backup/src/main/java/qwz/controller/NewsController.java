@@ -19,13 +19,12 @@ import java.util.Map;
  * @time: 2020/7/15 18:49
  */
 @RestController
-public class NewsController extends BaseController {
+public class NewsController {
 
     @Autowired
     private IProjectService iProjectService;
 
     @PostMapping("/selectNews")
-    @ApiOperation(value = "分页查询新闻信息",notes = "公告新闻的查询")
     public ResultData selectNews(@RequestParam String title,@RequestParam Integer pageNumber,
                                  @RequestParam Integer pageSize){
         ResultData resultData = iProjectService.selectNews(title, pageNumber, pageSize);

@@ -15,13 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @time: 2020/7/17 19:49
  */
 @RestController
-public class TechnicistController extends BaseController {
+public class TechnicistController {
 
     @Autowired
     private IProjectService iProjectService;
 
     @PostMapping("/selectTec")
-    @ApiOperation(value = "分页查询技术人员信息",notes = "技术人员信息的查询")
     public ResultData selectTec(@RequestParam Integer userid, @RequestParam Integer pageNumber,
                                 @RequestParam Integer pageSize){
         ResultData resultData = iProjectService.selectTec(userid, pageNumber, pageSize);

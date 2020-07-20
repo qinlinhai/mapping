@@ -17,20 +17,18 @@ import java.util.HashMap;
  * @time: 2020/7/17 19:52
  */
 @RestController
-public class MappingUnitController extends BaseController {
+public class MappingUnitController extends {
 
     @Autowired
     private IProjectService iProjectService;
 
     @PostMapping("/selectBlackUnit")
-    @ApiOperation(value = "分页查询黑名单",notes = "黑名单的查询")
     public ResultData selectBlackUnit(@RequestParam HashMap hashMap){
         ResultData resultData = iProjectService.selectBlackUnit(hashMap);
         return resultData;
     }
 
     @PostMapping("/selectWhiteUnit")
-    @ApiOperation(value = "分页查询白名单",notes = "白名单的查询")
     public ResultData selectWhiteUnit(@RequestParam HashMap hashMap){
         ResultData resultData = iProjectService.selectWhiteUnit(hashMap);
         return resultData;
