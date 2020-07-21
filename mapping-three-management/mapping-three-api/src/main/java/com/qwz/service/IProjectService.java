@@ -2,6 +2,7 @@ package com.qwz.service;
 
 import com.qwz.base.ResultData;
 import com.qwz.model.*;
+import com.qwz.utils.IDUtils;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -362,5 +363,202 @@ public interface IProjectService {
     ResultData selectProjectByUserId(@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize") Integer pageSize,
                                             @RequestParam("userId") Integer userId);
 
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 查询所有的 单位资质数据
+     **/
+    @GetMapping("/selectQualification")
+    ResultData selectQualification();
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 分页查询单位列表
+     **/
+    @PostMapping("/selectAll")
+    ResultData selectAll(@RequestParam("currentPage") Integer currentPage,
+                                @RequestParam("pageSize") Integer pageSize);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 根据单位的userId查询 特殊人员 技术人员 项目数量
+     **/
+    @GetMapping("/selectPersonByuserId")
+    ResultData selectPersonByuserId(@RequestParam Integer userId);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 查询 人员设备信息
+     **/
+    @GetMapping("/selectUnitPersonEquipment")
+    ResultData selectUnitPersonEquipment(@RequestParam("unitArea") String unitArea);
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 分页模糊查询查询所有单位
+     **/
+    @GetMapping("/selectAllUnitVague")
+     ResultData selectAllUnitVague(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize
+            ,@RequestParam("projectName") String unitName);
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     *
+     * 分页模糊查询待修改单位列表
+     **/
+    @GetMapping("/selectUnitNoUpdateAudit")
+     ResultData selectUnitNoUpdateAudit(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize
+            ,@RequestParam("projectName") String unitName);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 分页模糊查询待审核单位列表
+     **/
+    @GetMapping("/selectUnitNoRegister")
+     ResultData selectUnitNoRegister(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize
+            ,@RequestParam("projectName") String unitName);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据userId查询单位的基本信息
+     **/
+    @PostMapping("/selectUnitByUserId")
+     ResultData selectUnitByUserId(@RequestBody MappingUnit mappingUnit);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 查询关于此单位的附件
+     **/
+    @GetMapping("/selectResourceByUnitId")
+     ResultData selectResourceByUnitId(@RequestParam("userId") Integer userId);
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 双随机抽查单位
+     **/
+    @PostMapping("/selectUnitRandom")
+     ResultData selectUnitRandom(@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize") Integer pageSize,
+                                       @RequestParam("random") double randmon,@RequestParam("ownedDistrict") String ownedDistrict);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 根据单位的name level area查询单位
+     **/
+    @GetMapping("/selectUnitBynameAndLevelAndArea")
+     ResultData selectUnitBynameAndLevelAndArea(@RequestParam("unitName") String unitName,@RequestParam("unitLevel") String unitLevel,
+                                                      @RequestParam("unitArea") String unitArea);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     *  添加一个企业用户
+     **/
+    @PostMapping("/addUnit")
+     ResultData addUnit(@RequestParam Map map);
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 修改单位信息
+     **/
+    @PostMapping("/updateUnit")
+     ResultData updateUnit(@RequestBody MappingUnit mappingUnit);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据userId 查询 单位负责人信息
+     **/
+    @PostMapping("/selectOneByUserId")
+     ResultData selectOneByUserId(@RequestParam("userId") Integer userId,@RequestParam("currentPage") Integer currentPage,
+                                        @RequestParam("pageSize") Integer pageSize);
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据负责人id查询负责人基本信息和附件
+     **/
+    @GetMapping("/selectPrincipalEnclosure")
+     ResultData selectPrincipalEnclosure(@RequestParam("principalId") Long principalId);
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 新增一个负责人信息
+     **/
+    @PostMapping("/addPrincipal")
+     ResultData  addPrincipal(@RequestBody Principal principal);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 修改负责人信息
+     **/
+    @PostMapping("/updatePrincipal")
+     ResultData updatePrincipal(@RequestBody Principal principal);
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 删除负责人信息
+     **/
+    @PostMapping("/deletePrincipal")
+     ResultData deletePrincipal(@RequestBody Principal principal);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/18
+     * @desc
+     * 根据 成果名称 项目类型  成果日期
+     **/
+    @GetMapping("/selectResultCommitByNmeAndTypeAndDate")
+     ResultData selectResultCommitByNmeAndTypeAndDate(@RequestParam("name") String name, @RequestParam("type") String type,
+                                                            @RequestParam("date") String date);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 修改单位分值+插入单位分值表
+     **/
+    @PostMapping("/addUnitScore")
+     ResultData addUnitScore(@RequestBody Score score);
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据id查询评分表成功
+     **/
+    @PostMapping("/selectListScoreByUnitId")
+     ResultData selectListScoreByUnitId(@RequestBody Score score, @RequestParam("currentPage") Integer currentPage,
+                                              @RequestParam("pageSize") Integer pageSize);
 
 }

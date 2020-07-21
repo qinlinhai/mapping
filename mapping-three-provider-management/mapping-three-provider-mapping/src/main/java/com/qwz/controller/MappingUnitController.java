@@ -132,8 +132,8 @@ public class MappingUnitController extends CommonController<MappingUnit> {
      * 分页模糊查询查询所有单位
      **/
     @GetMapping("/selectAllUnitVague")
-    public ResultData selectAllUnitVague(@RequestParam("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize
-    ,@Param("projectName") String unitName){
+    public ResultData selectAllUnitVague(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize
+    ,@RequestParam("projectName") String unitName){
         try {
             PageInfo pageInfo = mappingUnitService.selectAllUnitVague(currentPage, pageSize, unitName);
             if(pageInfo!=null && !"".equals(pageInfo)){
@@ -157,8 +157,8 @@ public class MappingUnitController extends CommonController<MappingUnit> {
      * 分页模糊查询待修改单位列表
      **/
     @GetMapping("/selectUnitNoUpdateAudit")
-    public ResultData selectUnitNoUpdateAudit(@RequestParam("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize
-            ,@Param("projectName") String unitName){
+    public ResultData selectUnitNoUpdateAudit(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize
+            ,@RequestParam("projectName") String unitName){
         try {
             PageInfo pageInfo = mappingUnitService.selectUnitNoUpdateAudit(currentPage, pageSize, unitName);
             if(pageInfo!=null && !"".equals(pageInfo)){
@@ -180,8 +180,8 @@ public class MappingUnitController extends CommonController<MappingUnit> {
      * 分页模糊查询待审核单位列表
      **/
     @GetMapping("/selectUnitNoRegister")
-    public ResultData selectUnitNoRegister(@RequestParam("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize
-            ,@Param("projectName") String unitName){
+    public ResultData selectUnitNoRegister(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize
+            ,@RequestParam("projectName") String unitName){
         try {
             PageInfo pageInfo = mappingUnitService.selectUnitNoRegister(currentPage, pageSize, unitName);
             if(pageInfo!=null && !"".equals(pageInfo)){
