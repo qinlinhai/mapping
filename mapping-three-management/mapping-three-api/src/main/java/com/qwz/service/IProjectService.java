@@ -1,16 +1,15 @@
 package com.qwz.service;
 
 import com.qwz.base.ResultData;
-import com.qwz.model.CheckPerson;
-import com.qwz.model.LoginLog;
-import com.qwz.model.MappingProject;
-import com.qwz.model.User;
+import com.qwz.model.*;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -214,4 +213,154 @@ public interface IProjectService {
 
     @PostMapping("/selectIdSpecial")
     ResultData selectIdSpecial(@RequestParam Long id);
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 项目登记审核
+     **/
+    @PostMapping("/auditMappingProjectRegister")
+   ResultData auditMappingProjectRegister(@RequestBody Audit audit, @RequestParam("id") Long id, @RequestParam("auditStatus") Integer auditStatus);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 项目汇交审核
+     **/
+    @PostMapping("/auditMappingProjectRemittance")
+    ResultData auditMappingProjectRemittance(@RequestBody Audit audit, @RequestParam("id") Long id,@RequestParam("resultStatus") Integer resultStatus);
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据单位id查询单位审核记录
+     **/
+    @GetMapping("/selectUnitAuditByUnitId")
+    ResultData selectUnitAuditByUnitId(@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize") Integer pageSize,
+                                              @RequestParam("unitId") Long unitId);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 审核待修改审核
+     **/
+    @PostMapping("/updateUnitStatus")
+   ResultData updateUnitStatus(@RequestBody Audit audit,@RequestParam("unitId") Long unitId,@RequestParam("auditStatus") Integer auditStatus);
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据业务编号查询类型为项目登记审核的审核记录
+     **/
+    @GetMapping("/selectProjectAuditByRefId")
+    ResultData selectProjectAuditByRefId(@RequestParam("refId") Long refId,@RequestParam("currentPage") Integer currentPage,
+                                                @RequestParam("pageSize") Integer pageSize);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据业务编号查询类型为项目汇交审核的审核记录
+     **/
+    @GetMapping("/selectProjectRemittanceByRefId")
+    ResultData selectProjectRemittanceByRefId(@RequestParam("refId") Long refId,@RequestParam("currentPage") Integer currentPage,
+                                                     @RequestParam("pageSize") Integer pageSize);
+
+
+    /**
+     * @author  qlh
+     * @date   2020/7/14
+     * @desc
+     * 查询成功登记的项目信息
+     **/
+    @GetMapping("/selectSuccessRegister")
+    ResultData selectSuccessRegister(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize,
+                                            @RequestParam("searchName") String searchName);
+    /**
+     * @author  qlh
+     * @date   2020/7/14
+     * @desc
+     * 查询成功汇交的项目信息
+     **/
+    @GetMapping("/selectSuccessRemittance")
+    ResultData selectSuccessRemittance(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize,
+                                              @RequestParam("searchName") String searchName);
+
+    /**
+     * 根据项目id查询次项目的详细信息
+     * @param projectId
+     * @return
+     */
+    @GetMapping("/selectSuccessRegisterById")
+    ResultData selectSuccessRegisterById(@RequestParam("projectId") Long projectId);
+    /**
+     * @author  qlh
+     * @date   2020/7/15
+     * @desc
+     * 通过项目id查询项目以及附件
+     **/
+    @GetMapping("/selectProjectandResource")
+   ResultData selectProjectandResource(@RequestParam("projectId") Long projectId);
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 查询汇交结果 通过id
+     **/
+
+    @PostMapping("/selectResultCommitById")
+  ResultData selectResultCommitById(@RequestParam Long id);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     *  查询未审核的项目
+     **/
+    @GetMapping("/selectNoAudit")
+    ResultData selectNoAudit (@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize") Integer pageSize,
+                                     @RequestParam("projectName") String projectName);
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 查询为汇交的项目
+     **/
+    @GetMapping("/selectNoRemittance")
+    ResultData selectNoRemittance(@RequestParam("currentPage")Integer currentPage,@RequestParam("pageSize")Integer pageSize,
+                                         @RequestParam("projectName") String projectName);
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 给项目审核通过
+     **/
+    @PostMapping("/updateMappingProjectAuditStatus")
+    ResultData updateMappingProjectAuditStatus(@RequestBody MappingProject mappingProject);
+
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     *
+     * 查询 已完成 和未完成的 项目类型
+     **/
+    @GetMapping("/selectPRojectByType")
+    ResultData selectPRojectByType();
+
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据userId查询单位所属项目
+     **/
+    @GetMapping("/selectProjectByUserId")
+    ResultData selectProjectByUserId(@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize") Integer pageSize,
+                                            @RequestParam("userId") Integer userId);
+
+
 }

@@ -48,7 +48,7 @@ public class ScoreController extends CommonController<Score> {
      * 根据id查询评分表成功
      **/
     @PostMapping("/selectListScoreByUnitId")
-    public ResultData selectListScoreByUnitId(Score score, @RequestParam("currentPage") Integer currentPage,
+    public ResultData selectListScoreByUnitId(@RequestBody Score score, @RequestParam("currentPage") Integer currentPage,
                                               @RequestParam("pageSize") Integer pageSize){
         PageInfo pageInfo = scoreService.selectListScoreByUnitId(score, currentPage, pageSize);
         if(pageInfo!=null){

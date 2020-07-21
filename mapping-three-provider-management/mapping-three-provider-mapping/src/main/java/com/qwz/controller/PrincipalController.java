@@ -63,7 +63,7 @@ public class PrincipalController extends CommonController<Principal> {
      * 新增一个负责人信息
      **/
     @PostMapping("/addPrincipal")
-    public ResultData  addPrincipal(Principal principal){
+    public ResultData  addPrincipal(@RequestBody Principal principal){
         principal.setId(Long.valueOf(IDUtils.getNum18().toString()));
         Boolean aBoolean = principalService.addPrincipal(principal);
         if(aBoolean){
@@ -80,7 +80,7 @@ public class PrincipalController extends CommonController<Principal> {
      * 修改负责人信息
      **/
     @PostMapping("/updatePrincipal")
-    public ResultData updatePrincipal(Principal principal){
+    public ResultData updatePrincipal(@RequestBody Principal principal){
 
         Boolean aBoolean = principalService.updatePrincipal(principal);
         if(aBoolean){
@@ -96,7 +96,7 @@ public class PrincipalController extends CommonController<Principal> {
      * 删除负责人信息
      **/
     @PostMapping("/deletePrincipal")
-    public ResultData deletePrincipal(Principal principal){
+    public ResultData deletePrincipal(@RequestBody Principal principal){
         Boolean aBoolean = principalService.deletePrincipal(principal);
         if(aBoolean){
             return super.deleteSuccess("删除负责人成功");

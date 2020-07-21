@@ -34,7 +34,7 @@ public class AuditController extends CommonController<Audit> {
      * 项目登记审核
      **/
     @PostMapping("/auditMappingProjectRegister")
-    public ResultData auditMappingProjectRegister(Audit audit, @RequestParam("id") Long id,@RequestParam("auditStatus") Integer auditStatus){
+    public ResultData auditMappingProjectRegister(@RequestBody Audit audit, @RequestParam("id") Long id,@RequestParam("auditStatus") Integer auditStatus){
         Boolean aBoolean = auditService.addMappingProjectAudit(audit);
         MappingProject mappingProject = new MappingProject();
         mappingProject.setId(id);
@@ -54,7 +54,7 @@ public class AuditController extends CommonController<Audit> {
      * 项目汇交审核
      **/
     @PostMapping("/auditMappingProjectRemittance")
-    public ResultData auditMappingProjectRemittance(Audit audit, @RequestParam("id") Long id,@RequestParam("resultStatus") Integer resultStatus){
+    public ResultData auditMappingProjectRemittance(@RequestBody Audit audit, @RequestParam("id") Long id,@RequestParam("resultStatus") Integer resultStatus){
         Boolean aBoolean = auditService.addMappingProjectAudit(audit);
         MappingProject mappingProject = new MappingProject();
         mappingProject.setId(id);
@@ -90,7 +90,7 @@ public class AuditController extends CommonController<Audit> {
      * 审核待修改审核
      **/
     @PostMapping("/updateUnitStatus")
-    public ResultData updateUnitStatus(Audit audit,@RequestParam("unitId") Long unitId,@RequestParam("auditStatus") Integer auditStatus){
+    public ResultData updateUnitStatus(@RequestBody Audit audit,@RequestParam("unitId") Long unitId,@RequestParam("auditStatus") Integer auditStatus){
         Boolean aBoolean = mappingUnitService.updateUnitStatus(unitId, auditStatus);
         Boolean aBoolean1 = auditService.addMappingProjectAudit(audit);
         if(aBoolean && aBoolean1){

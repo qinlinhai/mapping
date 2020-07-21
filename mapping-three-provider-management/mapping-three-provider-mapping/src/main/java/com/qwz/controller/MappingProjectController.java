@@ -30,7 +30,12 @@ public class MappingProjectController extends CommonController<MappingProject> {
     @Autowired
     private AuditService auditService;
 
-
+    /**
+     * @author  qlh
+     * @date   2020/7/14
+     * @desc
+     * 查询成功登记的项目信息
+     **/
     @GetMapping("/selectSuccessRegister")
     public ResultData selectSuccessRegister(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize,
                                @RequestParam("searchName") String searchName) throws Exception {
@@ -43,6 +48,12 @@ public class MappingProjectController extends CommonController<MappingProject> {
         resultData.setDetail("分页查询所有审核通过的项目");
         return resultData;
     }
+    /**
+     * @author  qlh
+     * @date   2020/7/14
+     * @desc
+     * 查询成功汇交的项目信息
+     **/
     @GetMapping("/selectSuccessRemittance")
     public ResultData selectSuccessRemittance(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize,
                                               @RequestParam("searchName") String searchName){
@@ -54,38 +65,75 @@ public class MappingProjectController extends CommonController<MappingProject> {
         resultData.setDetail("分页查询所有汇交通过的项目");
         return resultData;
     }
-
+    /**
+     * 根据项目id查询次项目的详细信息
+     * @param projectId
+     * @return
+     */
     @GetMapping("/selectSuccessRegisterById")
     public ResultData selectSuccessRegisterById(@RequestParam("projectId") Long projectId){
         MappingProject mappingProject = mappingProjectService.selectSuccessRegisterById(projectId);
         return super.selectSuccess("查询项目的详细信息",mappingProject);
     }
-
+    /**
+     * @author  qlh
+     * @date   2020/7/15
+     * @desc
+     * 通过项目id查询项目以及附件
+     **/
     @GetMapping("/selectProjectandResource")
     public ResultData selectProjectandResource(@RequestParam("projectId") Long projectId){
         List<Map> maps = mappingProjectService.selectProjectandResource(projectId);
         return super.selectSuccess("通过项目id查询项目信息以及附件",maps);
     }
-
+    /**
+     * @author  qlh
+     * @date   2020/7/20
+     * @desc
+     * 查询汇交结果 通过id
+     **/
 
     @PostMapping("/selectResultCommitById")
     public ResultData selectResultCommitById(@RequestParam Long id){
         ResultCommit resultCommit = resultCommitService.selectResultCommitById(id);
-        return super.selectSuccess("查询汇交结果",resultCommit);
+        if(resultCommit!=null){
+
+            return super.selectSuccess("查询汇交结果成功",resultCommit);
+        }else{
+            return super.selectFailed("查询汇交结果失败");
+        }
     }
 
-
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     *  查询未审核的项目
+     **/
     @GetMapping("/selectNoAudit")
-    public ResultData selectNoAudit (Integer currentPage,Integer pageSize,String projectName){
+    public ResultData selectNoAudit (@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize") Integer pageSize,
+                                     @RequestParam("projectName") String projectName){
         PageInfo pageInfo = mappingProjectService.selectNoAudit(currentPage, pageSize, projectName);
         return super.selectSuccess("查询未审核的项目",pageInfo);
     }
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 查询为汇交的项目
+     **/
     @GetMapping("/selectNoRemittance")
-    public ResultData selectNoRemittance(Integer currentPage,Integer pageSize,String projectName){
+    public ResultData selectNoRemittance(@RequestParam("currentPage")Integer currentPage,@RequestParam("pageSize")Integer pageSize,
+                                         @RequestParam("projectName") String projectName){
         PageInfo pageInfo = mappingProjectService.selectNoRemittance(currentPage, pageSize, projectName);
         return super.selectSuccess("查询未汇交的项目",pageInfo);
     }
-
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     * 给项目审核通过
+     **/
     @PostMapping("/updateMappingProjectAuditStatus")
     public ResultData updateMappingProjectAuditStatus(@RequestBody MappingProject mappingProject){
         Boolean aBoolean = mappingProjectService.updateMappingProjectAuditStatus(mappingProject);
@@ -96,7 +144,13 @@ public class MappingProjectController extends CommonController<MappingProject> {
         }
     }
 
-
+    /**
+     * @author  qlh
+     * @date   2020/7/16
+     * @desc
+     *
+     * 查询 已完成 和未完成的 项目类型
+     **/
     @GetMapping("/selectPRojectByType")
     public ResultData selectPRojectByType(){
         List<Map> maps = mappingProjectService.selectPRojectByType();
@@ -130,7 +184,7 @@ public class MappingProjectController extends CommonController<MappingProject> {
      * @Date: 2020/7/16 22:06
      **/
     @PostMapping("/insertAdm")
-    public ResultData insertAdm(/*@RequestBody*/ MappingProject mappingProject,@RequestParam Map map){
+    public ResultData insertAdm(@RequestBody MappingProject mappingProject,@RequestParam Map map){
         Boolean aBoolean = mappingProjectService.insertAdm(mappingProject, map);
         if (aBoolean){
             return super.addSuccess(aBoolean);

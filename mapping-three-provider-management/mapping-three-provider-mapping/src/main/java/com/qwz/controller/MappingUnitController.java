@@ -282,7 +282,7 @@ public class MappingUnitController extends CommonController<MappingUnit> {
      * 修改单位信息
      **/
     @PostMapping("/updateUnit")
-    public ResultData updateUnit(MappingUnit mappingUnit){
+    public ResultData updateUnit(@RequestBody MappingUnit mappingUnit){
         Boolean aBoolean = mappingUnitService.updateUnit(mappingUnit);
         if(aBoolean){
             return super.updateSuccess("修改单位信息");
