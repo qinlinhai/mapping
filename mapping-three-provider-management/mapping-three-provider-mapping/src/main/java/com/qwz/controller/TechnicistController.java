@@ -60,20 +60,20 @@ public class TechnicistController extends CommonController<Technicist> {
         }
     }
 
-    /**
-     * @Description: 添加技术人员基础信息
-     * @Author: Bing
-     * @Date: 2020/7/20 20:41
-     **/
-    @PostMapping("/insertTec")
-    public ResultData insertTec(@RequestBody Technicist technicist,@RequestParam Long userid){
-        Integer integer = technicistService.insertTec(technicist, userid);
-        if (integer > 0){
-            return super.addSuccess(integer);
-        }else {
-            return super.addFailed();
-        }
-    }
+//    /**
+//     * @Description: 添加技术人员基础信息
+//     * @Author: Bing
+//     * @Date: 2020/7/20 20:41
+//     **/
+//    @PostMapping("/insertTec")
+//    public ResultData insertTec(@RequestBody Technicist technicist,@RequestParam Long userid){
+//        Integer integer = technicistService.insertTec(technicist, userid);
+//        if (integer > 0){
+//            return super.addSuccess(integer);
+//        }else {
+//            return super.addFailed();
+//        }
+//    }
 
     /**
      * @Description: 修改技术人员基础信息

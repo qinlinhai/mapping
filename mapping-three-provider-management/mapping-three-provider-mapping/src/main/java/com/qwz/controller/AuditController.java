@@ -27,45 +27,45 @@ public class AuditController extends CommonController<Audit> {
     public BaseService<Audit> getBaseService() {
         return null;
     }
-    /**
-     * @author  qlh
-     * @date   2020/7/16
-     * @desc
-     * 项目登记审核
-     **/
-    @PostMapping("/auditMappingProjectRegister")
-    public ResultData auditMappingProjectRegister(@RequestBody Audit audit, @RequestParam("id") Long id,@RequestParam("auditStatus") Integer auditStatus){
-        Boolean aBoolean = auditService.addMappingProjectAudit(audit);
-        MappingProject mappingProject = new MappingProject();
-        mappingProject.setId(id);
-        mappingProject.setAuditStatus(auditStatus);
-        Boolean aBoolean1 = mappingProjectService.updateMappingProjectAuditStatus(mappingProject);
-        if(aBoolean && aBoolean1){
-            return super.updateSuccess("项目登记审核操作成功");
-        }else{
-            return super.updateFailed("项目登记审核操作失败");
-        }
-    }
+//    /**
+//     * @author  qlh
+//     * @date   2020/7/16
+//     * @desc
+//     * 项目登记审核
+//     **/
+//    @PostMapping("/auditMappingProjectRegister")
+//    public ResultData auditMappingProjectRegister(@RequestBody Audit audit, @RequestParam("id") Long id,@RequestParam("auditStatus") Integer auditStatus){
+//        Boolean aBoolean = auditService.addMappingProjectAudit(audit);
+//        MappingProject mappingProject = new MappingProject();
+//        mappingProject.setId(id);
+//        mappingProject.setAuditStatus(auditStatus);
+//        Boolean aBoolean1 = mappingProjectService.updateMappingProjectAuditStatus(mappingProject);
+//        if(aBoolean && aBoolean1){
+//            return super.updateSuccess("项目登记审核操作成功");
+//        }else{
+//            return super.updateFailed("项目登记审核操作失败");
+//        }
+//    }
 
-    /**
-     * @author  qlh
-     * @date   2020/7/16
-     * @desc
-     * 项目汇交审核
-     **/
-    @PostMapping("/auditMappingProjectRemittance")
-    public ResultData auditMappingProjectRemittance(@RequestBody Audit audit, @RequestParam("id") Long id,@RequestParam("resultStatus") Integer resultStatus){
-        Boolean aBoolean = auditService.addMappingProjectAudit(audit);
-        MappingProject mappingProject = new MappingProject();
-        mappingProject.setId(id);
-        mappingProject.setResultsStatus(resultStatus);
-        Boolean aBoolean1 = mappingProjectService.updateMappingProjectAuditStatus(mappingProject);
-        if(aBoolean && aBoolean1){
-            return super.updateSuccess("项目汇交审核操作成功");
-        }else{
-            return super.updateFailed("项目汇交审核操作失败");
-        }
-    }
+//    /**
+//     * @author  qlh
+//     * @date   2020/7/16
+//     * @desc
+//     * 项目汇交审核
+//     **/
+//    @PostMapping("/auditMappingProjectRemittance")
+//    public ResultData auditMappingProjectRemittance(@RequestBody Audit audit, @RequestParam("id") Long id,@RequestParam("resultStatus") Integer resultStatus){
+//        Boolean aBoolean = auditService.addMappingProjectAudit(audit);
+//        MappingProject mappingProject = new MappingProject();
+//        mappingProject.setId(id);
+//        mappingProject.setResultsStatus(resultStatus);
+//        Boolean aBoolean1 = mappingProjectService.updateMappingProjectAuditStatus(mappingProject);
+//        if(aBoolean && aBoolean1){
+//            return super.updateSuccess("项目汇交审核操作成功");
+//        }else{
+//            return super.updateFailed("项目汇交审核操作失败");
+//        }
+//    }
     /**
      * @author  qlh
      * @date   2020/7/17
@@ -83,23 +83,23 @@ public class AuditController extends CommonController<Audit> {
         }
     }
 
-    /**
-     * @author  qlh
-     * @date   2020/7/17
-     * @desc
-     * 审核待修改审核
-     **/
-    @PostMapping("/updateUnitStatus")
-    public ResultData updateUnitStatus(@RequestBody Audit audit,@RequestParam("unitId") Long unitId,@RequestParam("auditStatus") Integer auditStatus){
-        Boolean aBoolean = mappingUnitService.updateUnitStatus(unitId, auditStatus);
-        Boolean aBoolean1 = auditService.addMappingProjectAudit(audit);
-        if(aBoolean && aBoolean1){
-            return super.updateSuccess();
-        }else{
-            return super.updateFailed();
-        }
-
-    }
+//    /**
+////     * @author  qlh
+////     * @date   2020/7/17
+////     * @desc
+////     * 审核待修改审核
+////     **/
+////    @PostMapping("/updateUnitStatus")
+////    public ResultData updateUnitStatus(@RequestBody Audit audit,@RequestParam("unitId") Long unitId,@RequestParam("auditStatus") Integer auditStatus){
+////        Boolean aBoolean = mappingUnitService.updateUnitStatus(unitId, auditStatus);
+////        Boolean aBoolean1 = auditService.addMappingProjectAudit(audit);
+////        if(aBoolean && aBoolean1){
+////            return super.updateSuccess();
+////        }else{
+////            return super.updateFailed();
+////        }
+////
+////    }
 
     /**
      * @author  qlh

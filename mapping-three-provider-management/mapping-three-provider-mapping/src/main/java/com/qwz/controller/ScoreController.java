@@ -41,20 +41,20 @@ public class ScoreController extends CommonController<Score> {
             return super.addFailed();
         }
     }
-    /**
-     * @author  qlh
-     * @date   2020/7/17
-     * @desc
-     * 根据id查询评分表成功
-     **/
-    @PostMapping("/selectListScoreByUnitId")
-    public ResultData selectListScoreByUnitId(@RequestBody Score score, @RequestParam("currentPage") Integer currentPage,
-                                              @RequestParam("pageSize") Integer pageSize){
-        PageInfo pageInfo = scoreService.selectListScoreByUnitId(score, currentPage, pageSize);
-        if(pageInfo!=null){
-            return super.selectSuccess("根据id查询评分表成功",pageInfo);
-        }else{
-            return super.selectFailed();
-        }
-    }
+//    /**
+//     * @author  qlh
+//     * @date   2020/7/17
+//     * @desc
+//     * 根据id查询评分表成功
+//     **/
+//    @PostMapping("/selectListScoreByUnitId")
+//    public ResultData selectListScoreByUnitId(@RequestBody Score score, @RequestParam("currentPage") Integer currentPage,
+//                                              @RequestParam("pageSize") Integer pageSize){
+//        PageInfo pageInfo = scoreService.selectListScoreByUnitId(score, currentPage, pageSize);
+//        if(pageInfo!=null){
+//            return super.selectSuccess("根据id查询评分表成功",pageInfo);
+//        }else{
+//            return super.selectFailed();
+//        }
+//    }
 }

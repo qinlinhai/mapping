@@ -10,6 +10,7 @@ import com.qwz.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.commons.util.IdUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.xml.transform.Result;
 import java.util.List;
@@ -102,6 +103,16 @@ public class PrincipalController extends CommonController<Principal> {
             return super.deleteSuccess("删除负责人成功");
         }else{
             return super.deleteFailed("删除负责人失败");
+        }
+    }
+
+    @PostMapping("/PrincipalUploadService")
+    public ResultData PrincipalUploadService(MultipartFile[] manyfile,String refBizType,Long refBizId,String memo){
+        Boolean aBoolean = principalService.PrincipalUploadService(manyfile, refBizType,refBizId,memo);
+        if(aBoolean){
+            return super.addSuccess();
+        }else{
+            return super.addFailed();
         }
     }
 

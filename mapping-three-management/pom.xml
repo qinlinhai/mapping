@@ -15,7 +15,7 @@
         <module>mapping-three-model</module>
         <module>mapping-three-mapper</module>
         <module>mapping-three-service</module>
-        <module>mapping-three-api</module>
+        <module>mapping-api</module>
     </modules>
 
     <dependencies>

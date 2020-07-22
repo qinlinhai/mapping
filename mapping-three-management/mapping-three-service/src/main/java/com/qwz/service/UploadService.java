@@ -1,6 +1,7 @@
 package com.qwz.service;
 
 import com.qwz.properties.FtpProperties;
+import com.qwz.utils.DateUtils;
 import com.qwz.utils.FilenameUtils;
 import com.qwz.utils.FtpUtils;
 import org.apache.commons.httpclient.util.DateUtil;
@@ -34,7 +35,7 @@ public class UploadService {
         newFileName = newFileName + oleFileName.substring(oleFileName.lastIndexOf(POINT));
         // 4.获取文件的上传路径(2020/07/10)
         // TODO 暂时没有完成，目前使用的是apache开源基金会的日期工具类，不符合咱们团队的技术水平，需要自己手动编写
-        String filePath = DateUtil.formatDate(new Date(), DATE_FORMAT);
+        String filePath = DateUtils.Date2StringByType(DateUtils.getCurrentDate(),DATE_FORMAT);
         // 5.调用文件上传工具类
         try {
             return FtpUtils.upload(ftpProperties.getHost(), ftpProperties.getPort(), ftpProperties.getUsername(),
@@ -44,4 +45,5 @@ public class UploadService {
         }
         return false;
     }
+
 }

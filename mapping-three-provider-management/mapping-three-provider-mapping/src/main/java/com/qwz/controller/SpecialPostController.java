@@ -60,21 +60,21 @@ public class SpecialPostController extends CommonController {
         }
     }
 
-    /**
-     * @Description: 添加特殊人员信息
-     * @Author: Bing
-     * @Date: 2020/7/20 21:29
-     **/
-    @PostMapping("/insertSpecial")
-    public ResultData insertSpecial(/*@RequestBody*/ SpecialPost specialPost,@RequestParam String path,
-                                    @RequestParam Long userid){
-        Boolean aBoolean = specialPostService.insertSpecial(specialPost, path, userid);
-        if (aBoolean){
-            return super.addSuccess(aBoolean);
-        }else {
-            return super.addFailed();
-        }
-    }
+//    /**
+//     * @Description: 添加特殊人员信息
+//     * @Author: Bing
+//     * @Date: 2020/7/20 21:29
+//     **/
+//    @PostMapping("/insertSpecial")
+//    public ResultData insertSpecial(/*@RequestBody*/ SpecialPost specialPost,@RequestParam String path,
+//                                    @RequestParam Long userid){
+//        Boolean aBoolean = specialPostService.insertSpecial(specialPost, path, userid);
+//        if (aBoolean){
+//            return super.addSuccess(aBoolean);
+//        }else {
+//            return super.addFailed();
+//        }
+//    }
 
     /**
      * @Description: 修改特殊人员信息

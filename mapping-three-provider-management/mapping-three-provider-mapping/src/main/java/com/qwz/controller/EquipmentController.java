@@ -61,36 +61,36 @@ public class EquipmentController extends CommonController<Equipment> {
         }
     }
 
-    /**
-     * @Description: 添加仪器设备信息
-     * @Author: Bing
-     * @Date: 2020/7/20 20:00
-     **/
-    @PostMapping("/insertEquipment")
-    public ResultData insertEquipment(/*@RequestBody*/ Equipment equipment,@RequestParam String path,
-                                      @RequestParam Long userid){
-        Boolean aBoolean = equipmentService.insertEquipment(equipment, path, userid);
-        if (aBoolean){
-            return super.addSuccess(aBoolean);
-        }else {
-            return super.addFailed();
-        }
-    }
+//    /**
+//     * @Description: 添加仪器设备信息
+//     * @Author: Bing
+//     * @Date: 2020/7/20 20:00
+//     **/
+//    @PostMapping("/insertEquipment")
+//    public ResultData insertEquipment(/*@RequestBody*/ Equipment equipment,@RequestParam String path,
+//                                      @RequestParam Long userid){
+//        Boolean aBoolean = equipmentService.insertEquipment(equipment, path, userid);
+//        if (aBoolean){
+//            return super.addSuccess(aBoolean);
+//        }else {
+//            return super.addFailed();
+//        }
+//    }
 
-    /**
-     * @Description: 修改仪器设备信息
-     * @Author: Bing
-     * @Date: 2020/7/20 20:02
-     **/
-    @PostMapping("/updateEquipment")
-    public ResultData updateEquipment(/*@RequestBody*/ Equipment equipment,@RequestParam String path){
-        Boolean aBoolean = equipmentService.updateEquipment(equipment, path);
-        if (aBoolean){
-            return super.updateSuccess(aBoolean);
-        }else {
-            return super.updateFailed();
-        }
-    }
+//    /**
+//     * @Description: 修改仪器设备信息
+//     * @Author: Bing
+//     * @Date: 2020/7/20 20:02
+//     **/
+//    @PostMapping("/updateEquipment")
+//    public ResultData updateEquipment(/*@RequestBody*/ Equipment equipment,@RequestParam String path){
+//        Boolean aBoolean = equipmentService.updateEquipment(equipment, path);
+//        if (aBoolean){
+//            return super.updateSuccess(aBoolean);
+//        }else {
+//            return super.updateFailed();
+//        }
+//    }
 
     /**
      * @Description: 删除仪器设备信息

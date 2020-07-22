@@ -1,16 +1,19 @@
 package com.qwz;
 
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import tk.mybatis.spring.annotation.MapperScan;
-
+import org.springframework.cloud.openfeign.EnableFeignClients;
+/**
+ * @author  qlh
+ * @date   2020/7/21
+ * @desc
+ **/
 @SpringBootApplication
+@EnableFeignClients
 @EnableDiscoveryClient
-@MapperScan("com.qwz.mapper")
-public class ApplicationRun9011 {
+public class ConsumerApplicationRun7011 {
     public static void main(String[] args) {
-        SpringApplication.run(ApplicationRun9011.class,args);
+        SpringApplication.run(ConsumerApplicationRun7011.class,args);
     }
 }
