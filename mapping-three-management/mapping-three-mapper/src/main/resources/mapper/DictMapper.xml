@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qwz.mapper.DictMapper" >
+  <resultMap id="BaseResultMap" type="com.qwz.model.Dict" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="DICT_ID" property="dictId" jdbcType="BIGINT" />
+    <result column="KEYY" property="keyy" jdbcType="BIGINT" />
+    <result column="VALUEE" property="valuee" jdbcType="VARCHAR" />
+    <result column="FIELD_NAME" property="fieldName" jdbcType="VARCHAR" />
+    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="allDict" resultMap="BaseResultMap">
+    select * from t_dict where 1=1
+    <if test="keyy!=null">
+      and KEYY=#{keyy}
+    </if>
+    <if test="valuee!=null">
+      and VALUEE=#{valuee}
+    </if>
+    <if test="fieldName!=null">
+      and FIELD_NAME=#{fieldName}
+    </if>
+    <if test="tableName!=null">
+      and TABLE_NAME=#{tableName}
+    </if>
+  </select>
+</mapper>
