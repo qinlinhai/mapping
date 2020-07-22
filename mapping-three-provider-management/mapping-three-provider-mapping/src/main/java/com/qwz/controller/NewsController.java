@@ -49,20 +49,20 @@ public class NewsController extends CommonController<News> {
         }
     }
 
-//    /**
-//     * @Description: 添加公告新闻
-//     * @Author: Bing
-//     * @Date: 2020/7/16 9:22
-//     **/
-//    @PostMapping("/insertNews")
-//    public ResultData insert(@RequestBody News news,@RequestParam String path1){
-//        Boolean aBoolean = newsService.insertNews(news, path1);
-//        if (aBoolean == true){
-//            return super.addSuccess(aBoolean);
-//        }else {
-//            return super.addFailed();
-//        }
-//    }
+    /**
+     * @Description: 添加公告新闻
+     * @Author: Bing
+     * @Date: 2020/7/16 9:22
+     **/
+    @PostMapping("/insertNews")
+    public ResultData insert(@RequestBody News news,@RequestParam String path1){
+        Boolean aBoolean = newsService.insertNews(news, path1);
+        if (aBoolean == true){
+            return super.addSuccess(aBoolean);
+        }else {
+            return super.addFailed();
+        }
+    }
 
     /**
      * @Description: 修改公告新闻

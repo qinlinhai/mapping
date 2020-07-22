@@ -35,7 +35,7 @@ public interface IProjectService {
 //     * @Date: 2020/7/16 11:17
 //     **/
 //    @PostMapping("/selectNews")
-//    ResultData selectNews(@RequestParam String title, @RequestParam Integer pageNumber,
+//    ResultData selectNews(@RequestParam String title,@RequestParam Integer pageNumber,
 //                          @RequestParam Integer pageSize);
 //
 //    /**
@@ -193,9 +193,9 @@ public interface IProjectService {
 //    @PostMapping("/selectIdEquipment")
 //    ResultData selectIdEquipment(@RequestParam Long id);
 //
-//    @PostMapping("/selectTec")
-//    ResultData selectTec(@RequestParam Integer userid,@RequestParam Integer pageNumber,
-//                         @RequestParam Integer pageSize);
+    @PostMapping("/selectTec")
+    ResultData selectTec(@RequestParam("userid") Integer userid,@RequestParam("pageNumber") Integer pageNumber,
+                         @RequestParam("pageSize") Integer pageSize);
 //
 //    @PostMapping("/selectOneTec")
 //    ResultData selectOneTec(@RequestParam Long id);
@@ -206,25 +206,25 @@ public interface IProjectService {
 //
 //    @PostMapping("/selectIdSpecial")
 //    ResultData selectIdSpecial(@RequestParam Long id);
-
-//    //TODO
-//    /**
-//     * @author  qlh
-//     * @date   2020/7/16
-//     * @desc
-//     * 项目登记审核
-//     **/
-//    @PostMapping("/auditMappingProjectRegister")
-//    ResultData auditMappingProjectRegister(@RequestBody Audit audit);
-//    //TODO
-//    /**
-//     * @author  qlh
-//     * @date   2020/7/16
-//     * @desc
-//     * 项目汇交审核
-//     **/
-//    @PostMapping("/auditMappingProjectRemittance")
-//    ResultData auditMappingProjectRemittance(@RequestBody Audit audit);
+//
+//
+////    /**
+////     * @author  qlh
+////     * @date   2020/7/16
+////     * @desc
+////     * 项目登记审核
+////     **/
+////    @PostMapping("/auditMappingProjectRegister")
+////    ResultData auditMappingProjectRegister(@RequestBody Audit audit, @RequestParam("id") Long id, @RequestParam("auditStatus") Integer auditStatus);
+//
+////    /**
+////     * @author  qlh
+////     * @date   2020/7/16
+////     * @desc
+////     * 项目汇交审核
+////     **/
+////    @PostMapping("/auditMappingProjectRemittance")
+////    ResultData auditMappingProjectRemittance(@RequestBody Audit audit, @RequestParam("id") Long id,@RequestParam("resultStatus") Integer resultStatus);
 //    /**
 //     * @author  qlh
 //     * @date   2020/7/17
@@ -234,15 +234,15 @@ public interface IProjectService {
 //    @GetMapping("/selectUnitAuditByUnitId")
 //    ResultData selectUnitAuditByUnitId(@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize") Integer pageSize,
 //                                       @RequestParam("unitId") Long unitId);
-//    //TODO
-//    /**
-//     * @author  qlh
-//     * @date   2020/7/17
-//     * @desc
-//     * 审核待修改审核
-//     **/
-//    @PostMapping("/updateUnitStatus")
-//    ResultData updateUnitStatus(@RequestBody Audit audit);
+//
+////    /**
+////     * @author  qlh
+////     * @date   2020/7/17
+////     * @desc
+////     * 审核待修改审核
+////     **/
+////    @PostMapping("/updateUnitStatus")
+////    ResultData updateUnitStatus(@RequestBody Audit audit,@RequestParam("unitId") Long unitId,@RequestParam("auditStatus") Integer auditStatus);
 //    /**
 //     * @author  qlh
 //     * @date   2020/7/17
@@ -355,14 +355,14 @@ public interface IProjectService {
 //    ResultData selectProjectByUserId(@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize") Integer pageSize,
 //                                     @RequestParam("userId") Integer userId);
 //
-    /**
-     * @author  qlh
-     * @date   2020/7/16
-     * @desc
-     * 查询所有的 单位资质数据
-     **/
-    @GetMapping("/selectQualification")
-    ResultData selectQualification();
+//    /**
+//     * @author  qlh
+//     * @date   2020/7/16
+//     * @desc
+//     * 查询所有的 单位资质数据
+//     **/
+//    @GetMapping("/selectQualification")
+//    ResultData selectQualification();
 //
 //
 //    /**
@@ -535,20 +535,21 @@ public interface IProjectService {
 //    ResultData selectResultCommitByNmeAndTypeAndDate(@RequestParam("name") String name, @RequestParam("type") String type,
 //                                                     @RequestParam("date") String date);
 //
-    /**
-     * @author  qlh
-     * @date   2020/7/17
-     * @desc
-     * 修改单位分值+插入单位分值表
-     **/
-    @PostMapping("/addUnitScore")
-    ResultData addUnitScore(@RequestBody Score score);
 //    /**
 //     * @author  qlh
 //     * @date   2020/7/17
 //     * @desc
-//     * 根据id查询评分表成功
+//     * 修改单位分值+插入单位分值表
 //     **/
-//    @PostMapping("/selectListScoreByUnitId")
-//    ResultData selectListScoreByUnitId(@RequestBody Score score);
+//    @PostMapping("/addUnitScore")
+//    ResultData addUnitScore(@RequestBody Score score);
+    /**
+     * @author  qlh
+     * @date   2020/7/17
+     * @desc
+     * 根据id查询评分表成功
+     **/
+    @PostMapping("/selectListScoreByUnitId")
+    ResultData selectListScoreByUnitId(@RequestBody Score score, @RequestParam("currentPage") Integer currentPage,
+                                       @RequestParam("pageSize") Integer pageSize);
 }

@@ -178,20 +178,20 @@ public class MappingProjectController extends CommonController<MappingProject> {
         }
     }
 
-//    /**
-//     * @Description: 项目管理，添加项目
-//     * @Author: Bing
-//     * @Date: 2020/7/16 22:06
-//     **/
-//    @PostMapping("/insertAdm")
-//    public ResultData insertAdm(@RequestBody MappingProject mappingProject,@RequestParam Map map){
-//        Boolean aBoolean = mappingProjectService.insertAdm(mappingProject, map);
-//        if (aBoolean){
-//            return super.addSuccess(aBoolean);
-//        }else {
-//            return super.addFailed();
-//        }
-//    }
+    /**
+     * @Description: 项目管理，添加项目
+     * @Author: Bing
+     * @Date: 2020/7/16 22:06
+     **/
+    @PostMapping("/insertAdm")
+    public ResultData insertAdm(@RequestBody MappingProject mappingProject,@RequestParam Map map){
+        Boolean aBoolean = mappingProjectService.insertAdm(mappingProject, map);
+        if (aBoolean){
+            return super.addSuccess(aBoolean);
+        }else {
+            return super.addFailed();
+        }
+    }
 
     /**
      * @Description: 项目管理  修改项目

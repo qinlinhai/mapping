@@ -18,13 +18,13 @@ public class TechnicistController {
     @Autowired
     private IProjectService iProjectService;
 
-//    @PostMapping("/selectTec")
-//    public ResultData selectTec(@RequestParam Integer userid, @RequestParam Integer pageNumber,
-//                                @RequestParam Integer pageSize){
-//        ResultData resultData = iProjectService.selectTec(userid, pageNumber, pageSize);
-//        return resultData;
-//    }
-//
+    @PostMapping("/selectTec")
+    public ResultData selectTec(@RequestParam("userid") Integer userid, @RequestParam("pageNumber") Integer pageNumber,
+                                @RequestParam("pageSize") Integer pageSize){
+        ResultData resultData = iProjectService.selectTec(userid, pageNumber, pageSize);
+        return resultData;
+    }
+
 //    @PostMapping("/selectOneTec")
 //    public ResultData selectOneTec(@RequestParam Long id){
 //        ResultData resultData = iProjectService.selectOneTec(id);

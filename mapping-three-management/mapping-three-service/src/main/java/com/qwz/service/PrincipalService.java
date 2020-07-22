@@ -137,7 +137,7 @@ public class PrincipalService extends BaseService<Principal> {
             long size = file.getSize();
             String extName = oldname.substring(oldname.indexOf(POINT), oldname.length());
             Resource resource=new Resource();
-            String newfileName=FilenameUtils.getFileName();
+            String newfileName=FilenameUtils.getFileName()+extName;
             String filePath= DateUtils.Date2StringByType(DateUtils.getCurrentDate(),DATE_FORMAT);
             String path=ftp.getHttpPath()+"/"+filePath+"/"+newfileName;
             resource.setId(Long.valueOf(IDUtils.getNum18()));

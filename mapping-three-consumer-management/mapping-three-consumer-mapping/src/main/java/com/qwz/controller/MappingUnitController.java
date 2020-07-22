@@ -41,16 +41,16 @@ public class MappingUnitController{
 //        ResultData resultData = iProjectService.selectWhiteUnit(hashMap);
 //        return resultData;
 //    }
-    /**
-     * @author  qlh
-     * @date   2020/7/16
-     * @desc
-     * 查询所有的 单位资质数据
-     **/
-    @GetMapping("/selectQualification")
-    public ResultData selectQualification(){
-        return iProjectService.selectQualification();
-    }
+//    /**
+//     * @author  qlh
+//     * @date   2020/7/16
+//     * @desc
+//     * 查询所有的 单位资质数据
+//     **/
+//    @GetMapping("/selectQualification")
+//    public ResultData selectQualification(){
+//        return iProjectService.selectQualification();
+//    }
 //
 //
 //    /**
