@@ -20,4 +20,19 @@
         <result column="type" jdbcType="CHAR" property="type" />
         <result column="token" jdbcType="VARCHAR" property="token" />
     </resultMap>
+    <select id="allUser" resultType="java.util.Map">
+        select u.*,d.DEPT_NAME from t_user u LEFT join t_dept d on u.dept_id=d.DEPT_ID
+        <where>
+            1=1
+            <if test="username!=null">
+                and u.username like '%#{username}%'
+            </if>
+            <if test="deptId!=null">
+                and u.dept_id like '%#{deptId}%'
+            </if>
+            <if test="createTime!=null">
+                and u.create_time between #{startTime} and #{endTime}
+            </if>
+        </where>
+    </select>
 </mapper>

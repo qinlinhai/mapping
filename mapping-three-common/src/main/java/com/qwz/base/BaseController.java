@@ -1,6 +1,8 @@
 package com.qwz.base;
 import javax.xml.transform.Result;
 
+import java.util.List;
+
 import static com.qwz.status.LoginStatus.*;
 import static com.qwz.status.AddStatus.*;
 import static com.qwz.status.DeleteStatus.*;
@@ -662,7 +664,44 @@ public ResultData deleteDataNoExist(String msg){
         return resultData;
     }
 
+    /**
+     * 查询信息,判断查询的信息是否为空，如果为空调用查询成功信息，如果不为空调用查询失败信息
+     */
+    protected  ResultData selectInfo(List list){
+        if (list!=null&&list.size()>0){
+            return selectSuccess();
+        }else {
+            return selectFailed();
+        }
+    }
 
+    /**
+     * 新增信息返回结果判断
+     */
+    protected ResultData addInfo(Integer i){
+        if (i>0){
+            return addSuccess();
+        }
+        return addFailed();
+    }
+    /**
+     * 删除信息返回结果判断
+     */
+    protected ResultData deleteInfo(Integer i){
+        if (i>0){
+            return deleteSuccess();
+        }
+        return deleteFailed();
+    }
+    /**
+     * 修改信息返回结果判断
+     */
+    protected ResultData updateInfo(Integer i){
+        if (i>0){
+            return updateSuccess();
+        }
+        return updateFailed();
+    }
 
 
 }

@@ -5,6 +5,7 @@ import tk.mybatis.mapper.common.Mapper;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description:
@@ -14,4 +15,8 @@ import java.util.List;
 public interface UserMapper extends Mapper<User> {
 
     List<HashMap> selectUserAll(HashMap map);
+    /**
+     * 条件查询所有用户信息
+     */
+    List<Map> allUser(Map map);
 }
