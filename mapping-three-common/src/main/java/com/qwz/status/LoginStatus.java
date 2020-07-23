@@ -10,7 +10,8 @@ public enum LoginStatus {
     USER_EXIST("7003", "用户已经存在"),
     USER_NOT_EXIST("7004", "用户不存在"),
     PASSWORD_WRONG("7005", "密码错误"),
-    LOGOUT_WRONG("7006", "用户退出异常");
+    LOGOUT_WRONG("7006", "用户退出异常"),
+    SYSTEM_EXCEPTION("7007", "系统异常");
 
     LoginStatus(String code, String msg) {
         this.code = code;

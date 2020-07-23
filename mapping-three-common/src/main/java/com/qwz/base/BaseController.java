@@ -129,7 +129,7 @@ public ResultData userExit(){
  * @author  qlh
  * @date   2020/7/8
  * @desc
- * 登陆失败 用不存在
+ * 登陆失败 用户不存在
  **/
 public ResultData userNoExit(){
     ResultData resultData=new ResultData();
@@ -149,6 +149,19 @@ public ResultData passwordWaring(){
     resultData.setMsg(PASSWORD_WRONG.getMsg());
     return resultData;
 }
+
+/**
+ * @Description: 系统异常
+ * @Author: Bing
+ * @Date: 2020/7/23 8:57
+ **/
+public ResultData systemException(){
+    ResultData resultData = new ResultData();
+    resultData.setCode(SYSTEM_EXCEPTION.getCode());
+    resultData.setMsg(SYSTEM_EXCEPTION.getMsg());
+    return resultData;
+}
+
 /**
  * @author  qlh
  * @date   2020/7/9
