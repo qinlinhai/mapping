@@ -35,8 +35,8 @@ public class SpecialPostController extends CommonController {
      * @Date: 2020/7/17 16:29
      **/
     @PostMapping("/selectSpecial")
-    public ResultData selectSpecial(@RequestParam Integer userid,@RequestParam Integer pageNumber,
-                                    @RequestParam Integer pageSize){
+    public ResultData selectSpecial(@RequestParam("userid") Integer userid,@RequestParam("pageNumber") Integer pageNumber,
+                                    @RequestParam("pageSize") Integer pageSize){
         PageInfo pageInfo = specialPostService.selectSpecial(userid, pageNumber, pageSize);
         if (pageInfo != null && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
@@ -51,7 +51,7 @@ public class SpecialPostController extends CommonController {
      * @Date: 2020/7/17 19:36
      **/
     @PostMapping("/selectIdSpecial")
-    public ResultData selectIdSpecial(@RequestParam Long id){
+    public ResultData selectIdSpecial(@RequestParam("id") Long id){
         List<SpecialPost> specialPosts = specialPostService.selectIdSpecial(id);
         if (specialPosts != null && !"".equals(specialPosts)){
             return super.selectSuccess(specialPosts);
@@ -60,21 +60,21 @@ public class SpecialPostController extends CommonController {
         }
     }
 
-//    /**
-//     * @Description: 添加特殊人员信息
-//     * @Author: Bing
-//     * @Date: 2020/7/20 21:29
-//     **/
-//    @PostMapping("/insertSpecial")
-//    public ResultData insertSpecial(/*@RequestBody*/ SpecialPost specialPost,@RequestParam String path,
-//                                    @RequestParam Long userid){
-//        Boolean aBoolean = specialPostService.insertSpecial(specialPost, path, userid);
-//        if (aBoolean){
-//            return super.addSuccess(aBoolean);
-//        }else {
-//            return super.addFailed();
-//        }
-//    }
+    /**
+     * @Description: 添加特殊人员信息
+     * @Author: Bing
+     * @Date: 2020/7/20 21:29
+     **/
+    @PostMapping("/insertSpecial")
+    public ResultData insertSpecial(@RequestBody SpecialPost specialPost,@RequestParam("path") String path,
+                                    @RequestParam("userid") Long userid){
+        Boolean aBoolean = specialPostService.insertSpecial(specialPost, path, userid);
+        if (aBoolean){
+            return super.addSuccess(aBoolean);
+        }else {
+            return super.addFailed();
+        }
+    }
 
     /**
      * @Description: 修改特殊人员信息
@@ -97,7 +97,7 @@ public class SpecialPostController extends CommonController {
      * @Date: 2020/7/20 21:32
      **/
     @PostMapping("/deleteSpecial")
-    public ResultData deleteSpecial(@RequestParam Long id){
+    public ResultData deleteSpecial(@RequestParam("id") Long id){
         Integer integer = specialPostService.deleteSpecial(id);
         if (integer > 0){
             return super.deleteSuccess(integer);

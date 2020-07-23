@@ -36,8 +36,8 @@ public class EquipmentController extends CommonController<Equipment> {
      * @Date: 2020/7/17 16:32
      **/
     @PostMapping("/selectEquipment")
-    public ResultData selectEquipment(@RequestParam Integer userid,@RequestParam Integer pageNumber,
-                                      @RequestParam Integer pageSize){
+    public ResultData selectEquipment(@RequestParam("userid") Integer userid,@RequestParam("pageNumber") Integer pageNumber,
+                                      @RequestParam("pageSize") Integer pageSize){
         PageInfo pageInfo = equipmentService.selectEquipment(userid, pageNumber, pageSize);
         if (pageInfo != null && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
@@ -52,7 +52,7 @@ public class EquipmentController extends CommonController<Equipment> {
      * @Date: 2020/7/17 19:38
      **/
     @PostMapping("/selectIdEquipment")
-    public ResultData selectIdEquipment(@RequestParam Long id){
+    public ResultData selectIdEquipment(@RequestParam("id") Long id){
         List<Equipment> equipment = equipmentService.selectIdEquipment(id);
         if (equipment != null && !"".equals(equipment)){
             return super.selectSuccess(equipment);
@@ -67,8 +67,8 @@ public class EquipmentController extends CommonController<Equipment> {
      * @Date: 2020/7/20 20:00
      **/
     @PostMapping("/insertEquipment")
-    public ResultData insertEquipment(/*@RequestBody*/ Equipment equipment,@RequestParam String path,
-                                      @RequestParam Long userid){
+    public ResultData insertEquipment(@RequestBody Equipment equipment,@RequestParam("path") String path,
+                                      @RequestParam("userid") Long userid){
         Boolean aBoolean = equipmentService.insertEquipment(equipment, path, userid);
         if (aBoolean){
             return super.addSuccess(aBoolean);
@@ -83,7 +83,7 @@ public class EquipmentController extends CommonController<Equipment> {
      * @Date: 2020/7/20 20:02
      **/
     @PostMapping("/updateEquipment")
-    public ResultData updateEquipment(/*@RequestBody*/ Equipment equipment,@RequestParam String path){
+    public ResultData updateEquipment(@RequestBody Equipment equipment,@RequestParam("path") String path){
         Boolean aBoolean = equipmentService.updateEquipment(equipment, path);
         if (aBoolean){
             return super.updateSuccess(aBoolean);
@@ -98,7 +98,7 @@ public class EquipmentController extends CommonController<Equipment> {
      * @Date: 2020/7/20 20:04
      **/
     @PostMapping("/deleteEquipment")
-    public ResultData deleteEquipment(@RequestParam Long id){
+    public ResultData deleteEquipment(@RequestParam("id") Long id){
         Integer integer = equipmentService.deleteEquipment(id);
         if (integer > 0){
             return super.deleteSuccess(integer);

@@ -51,7 +51,7 @@ public class TechnicistController extends CommonController<Technicist> {
      * @Date: 2020/7/17 17:12
      **/
     @PostMapping("/selectOneTec")
-    public ResultData selectOneTec(@RequestParam Long id){
+    public ResultData selectOneTec(@RequestParam("id") Long id){
         List<Technicist> technicists = technicistService.selectOneTec(id);
         if (technicists != null && !"".equals(technicists)){
             return super.selectSuccess(technicists);
@@ -66,7 +66,7 @@ public class TechnicistController extends CommonController<Technicist> {
      * @Date: 2020/7/20 20:41
      **/
     @PostMapping("/insertTec")
-    public ResultData insertTec(@RequestBody Technicist technicist,@RequestParam Long userid){
+    public ResultData insertTec(@RequestBody Technicist technicist,@RequestParam("userid") Long userid){
         Integer integer = technicistService.insertTec(technicist, userid);
         if (integer > 0){
             return super.addSuccess(integer);
@@ -96,7 +96,7 @@ public class TechnicistController extends CommonController<Technicist> {
      * @Date: 2020/7/20 20:44
      **/
     @PostMapping("/deleteTec")
-    public ResultData deleteTec(@RequestParam Long id){
+    public ResultData deleteTec(@RequestParam("id") Long id){
         Integer integer = technicistService.deleteTec(id);
         if (integer > 0){
             return super.deleteSuccess(integer);

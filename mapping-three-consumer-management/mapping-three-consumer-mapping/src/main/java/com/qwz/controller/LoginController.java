@@ -21,16 +21,16 @@ public class LoginController extends BaseController {
     @Autowired
     private IProjectService projectService;
 
-//    /**
-//     * @Description: 执行登录操作
-//     * @Author: Bing
-//     * @Date: 2020/7/15 15:22
-//     **/
-//    @PostMapping("/doLogin")
-//    @LoginAnnotation(opeationType = "登录操作", opeationName = "管理员登录")
-//    public ResultData doLogin(@RequestBody User user){
-//        return projectService.doLogin(user);
-//    }
+    /**
+     * @Description: 执行登录操作
+     * @Author: Bing
+     * @Date: 2020/7/15 15:22
+     **/
+    @PostMapping("/doLogin")
+    @LoginAnnotation(opeationType = "登录操作", opeationName = "管理员登录")
+    public ResultData doLogin(@RequestBody User user){
+        return projectService.doLogin(user);
+    }
 
 
 

@@ -12,7 +12,6 @@ import org.springframework.cloud.commons.util.IdUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.xml.transform.Result;
 import java.util.List;
 import java.util.Map;
 
@@ -106,8 +105,9 @@ public class PrincipalController extends CommonController<Principal> {
         }
     }
 
-    @PostMapping("/PrincipalUploadService")
-    public ResultData PrincipalUploadService(MultipartFile[] manyfile,String refBizType,Long refBizId,String memo){
+    @PostMapping("/principalUploadService")
+    public ResultData principalUploadService(@RequestParam("manyfile") MultipartFile[] manyfile,@RequestParam("refBizType") String refBizType,@RequestParam("refBizId") Long refBizId,
+                                             @RequestParam("memo") String memo){
         Boolean aBoolean = principalService.PrincipalUploadService(manyfile, refBizType,refBizId,memo);
         if(aBoolean){
             return super.addSuccess();

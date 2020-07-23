@@ -22,28 +22,28 @@ public class CheckPersonController{
    @Autowired
    private IProjectService iProjectService;
 
-//    @PostMapping("/selectCheckPerson")
-//    public ResultData selectCheckPerson(@RequestParam HashMap hashMap){
-//        ResultData resultData = iProjectService.selectCheckPerson(hashMap);
-//        return resultData;
-//    }
-//
-//    @PostMapping("/insertCheckPerson")
-//    public ResultData insertCheckPerson(@RequestBody CheckPerson checkPerson){
-//        ResultData resultData = iProjectService.insertCheckPerson(checkPerson);
-//        return resultData;
-//    }
-//
-//    @PostMapping("/updateCheckPerson")
-//    public ResultData updateCheckPerson(@RequestBody CheckPerson checkPerson){
-//
-//        ResultData resultData = iProjectService.updateCheckPerson(checkPerson);
-//        return resultData;
-//    }
-//
-//    @PostMapping("/delectOneCheckPerson")
-//    public ResultData delectOneCheckPerson(@RequestParam String id){
-//        ResultData resultData = iProjectService.delectOneCheckPerson(id);
-//        return resultData;
-//    }
+    @PostMapping("/selectCheckPerson")
+    public ResultData selectCheckPerson(@RequestBody HashMap hashMap){
+        ResultData resultData = iProjectService.selectCheckPerson(hashMap);
+        return resultData;
+    }
+
+    @PostMapping("/insertCheckPerson")
+    public ResultData insertCheckPerson(@RequestBody CheckPerson checkPerson){
+        ResultData resultData = iProjectService.insertCheckPerson(checkPerson);
+        return resultData;
+    }
+
+    @PostMapping("/updateCheckPerson")
+    public ResultData updateCheckPerson(@RequestBody CheckPerson checkPerson){
+
+        ResultData resultData = iProjectService.updateCheckPerson(checkPerson);
+        return resultData;
+    }
+
+    @PostMapping("/delectOneCheckPerson")
+    public ResultData delectOneCheckPerson(@RequestParam("id") String id){
+        ResultData resultData = iProjectService.delectOneCheckPerson(id);
+        return resultData;
+    }
 }

@@ -18,16 +18,16 @@ public class EquipmentController {
     @Autowired
     private IProjectService iProjectService;
 
-//    @PostMapping("/selectEquipment")
-//    public ResultData selectEquipment(@RequestParam Integer userid,@RequestParam Integer pageNumber,
-//                                      @RequestParam Integer pageSize){
-//        ResultData resultData = iProjectService.selectEquipment(userid, pageNumber, pageSize);
-//        return resultData;
-//    }
-//
-//    @PostMapping("/selectIdEquipment")
-//    public ResultData selectIdEquipment(@RequestParam Long id){
-//        ResultData resultData = iProjectService.selectIdEquipment(id);
-//        return resultData;
-//    }
+    @PostMapping("/selectEquipment")
+    public ResultData selectEquipment(@RequestParam("userid") Integer userid,@RequestParam("pageNumber") Integer pageNumber,
+                                      @RequestParam("pageSize") Integer pageSize){
+        ResultData resultData = iProjectService.selectEquipment(userid, pageNumber, pageSize);
+        return resultData;
+    }
+
+    @PostMapping("/selectIdEquipment")
+    public ResultData selectIdEquipment(@RequestParam("id") Long id){
+        ResultData resultData = iProjectService.selectIdEquipment(id);
+        return resultData;
+    }
 }

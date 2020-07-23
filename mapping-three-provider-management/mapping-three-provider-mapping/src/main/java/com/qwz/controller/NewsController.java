@@ -39,8 +39,8 @@ public class NewsController extends CommonController<News> {
      * @Date: 2020/7/16 16:18
      **/
     @PostMapping("/selectNews")
-    public ResultData selectNews(@RequestParam String title,@RequestParam Integer pageNumber,
-                                 @RequestParam Integer pageSize){
+    public ResultData selectNews(@RequestParam("title") String title,@RequestParam("pageNumber") Integer pageNumber,
+                                 @RequestParam("pageSize") Integer pageSize){
         PageInfo pageInfo = newsService.selectNewss(title, pageNumber, pageSize);
         if (null != pageInfo && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
@@ -55,7 +55,7 @@ public class NewsController extends CommonController<News> {
      * @Date: 2020/7/16 9:22
      **/
     @PostMapping("/insertNews")
-    public ResultData insert(@RequestBody News news,@RequestParam String path1){
+    public ResultData insert(@RequestBody News news,@RequestParam("path1") String path1){
         Boolean aBoolean = newsService.insertNews(news, path1);
         if (aBoolean == true){
             return super.addSuccess(aBoolean);
@@ -85,7 +85,7 @@ public class NewsController extends CommonController<News> {
      * @Date: 2020/7/16 9:22
      **/
     @PostMapping("/deleteNews")
-    public ResultData deleteNews(@RequestParam List<Integer> ids){
+    public ResultData deleteNews(@RequestParam("ids") List<Integer> ids){
         Integer integer = newsService.delectListNews(ids);
         if (integer > 0){
             return  super.deleteSuccess(integer);
@@ -100,7 +100,7 @@ public class NewsController extends CommonController<News> {
      * @Date: 2020/7/16 11:16
      **/
     @PostMapping("/deleteOneNews")
-    public ResultData deleteOneNews(@RequestParam String id){
+    public ResultData deleteOneNews(@RequestParam("id") String id){
         Integer delectNews = newsService.delectNews(id);
         if (delectNews > 0){
             return super.deleteSuccess(delectNews);

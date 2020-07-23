@@ -14,7 +14,6 @@ import java.util.Map;
  */
 public interface UserMapper extends Mapper<User> {
 
-    List<HashMap> selectUserAll(HashMap map);
     /**
      * 条件查询所有用户信息
      */

@@ -70,7 +70,7 @@ public class MappingUnitController extends CommonController<MappingUnit> {
      * 根据单位的userId查询 特殊人员 技术人员 项目数量
      **/
     @GetMapping("/selectPersonByuserId")
-    public ResultData selectPersonByuserId(@RequestParam Integer userId){
+    public ResultData selectPersonByuserId(@RequestParam("userId") Integer userId){
         List<Map> maps = mappingUnitService.selectPersonByuserId(userId);
         if(maps!=null && maps.size()>0){
             return super.selectSuccess("查询人员成功",maps);
@@ -101,7 +101,7 @@ public class MappingUnitController extends CommonController<MappingUnit> {
      * @Date: 2020/7/16 11:46
      **/
     @PostMapping("/selectWhiteUnit")
-    public ResultData selectWhiteUnit(@RequestParam HashMap hashMap){
+    public ResultData selectWhiteUnit(@RequestBody HashMap hashMap){
         PageInfo pageInfo = mappingUnitService.selectWhiteUnit(hashMap);
         if (null != pageInfo && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
@@ -116,7 +116,7 @@ public class MappingUnitController extends CommonController<MappingUnit> {
      * @Date: 2020/7/16 11:46
      **/
     @PostMapping("/selectBlackUnit")
-    public ResultData selectBlackUnit(@RequestParam HashMap hashMap){
+    public ResultData selectBlackUnit(@RequestBody HashMap hashMap){
         PageInfo pageInfo = mappingUnitService.selectBlackUnit(hashMap);
         if (null != pageInfo && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
@@ -269,7 +269,7 @@ public class MappingUnitController extends CommonController<MappingUnit> {
      *  添加一个企业用户
      **/
     @PostMapping("/addUnit")
-    public ResultData addUnit(@RequestParam Map map){
+    public ResultData addUnit(@RequestBody Map map){
         ResultData insert = super.insert(map);
         return insert;
     }

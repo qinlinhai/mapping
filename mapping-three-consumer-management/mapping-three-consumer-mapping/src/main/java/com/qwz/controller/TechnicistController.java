@@ -25,9 +25,9 @@ public class TechnicistController {
         return resultData;
     }
 
-//    @PostMapping("/selectOneTec")
-//    public ResultData selectOneTec(@RequestParam Long id){
-//        ResultData resultData = iProjectService.selectOneTec(id);
-//        return resultData;
-//    }
+    @PostMapping("/selectOneTec")
+    public ResultData selectOneTec(@RequestParam("id") Long id){
+        ResultData resultData = iProjectService.selectOneTec(id);
+        return resultData;
+    }
 }

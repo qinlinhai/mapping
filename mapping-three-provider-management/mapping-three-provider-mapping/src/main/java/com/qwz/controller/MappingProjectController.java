@@ -94,7 +94,7 @@ public class MappingProjectController extends CommonController<MappingProject> {
      **/
 
     @PostMapping("/selectResultCommitById")
-    public ResultData selectResultCommitById(@RequestParam Long id){
+    public ResultData selectResultCommitById(@RequestParam("id") Long id){
         ResultCommit resultCommit = resultCommitService.selectResultCommitById(id);
         if(resultCommit!=null){
 
@@ -168,8 +168,8 @@ public class MappingProjectController extends CommonController<MappingProject> {
      * @Date: 2020/7/16 21:49
      **/
     @PostMapping("/selectAdm")
-    public ResultData selectAdm(@RequestParam String projectType,@RequestParam Integer userid,
-                                @RequestParam Integer pageNumber, @RequestParam Integer pageSize){
+    public ResultData selectAdm(@RequestParam("projectType") String projectType,@RequestParam("userid") Integer userid,
+                                @RequestParam("pageNumber") Integer pageNumber, @RequestParam("pageSize") Integer pageSize){
         PageInfo pageInfo = mappingProjectService.selectAdm(projectType, userid, pageNumber, pageSize);
         if (pageInfo != null && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
@@ -178,20 +178,20 @@ public class MappingProjectController extends CommonController<MappingProject> {
         }
     }
 
-    /**
-     * @Description: 项目管理，添加项目
-     * @Author: Bing
-     * @Date: 2020/7/16 22:06
-     **/
-    @PostMapping("/insertAdm")
-    public ResultData insertAdm(@RequestBody MappingProject mappingProject,@RequestParam Map map){
-        Boolean aBoolean = mappingProjectService.insertAdm(mappingProject, map);
-        if (aBoolean){
-            return super.addSuccess(aBoolean);
-        }else {
-            return super.addFailed();
-        }
-    }
+//    /**
+//     * @Description: 项目管理，添加项目
+//     * @Author: Bing
+//     * @Date: 2020/7/16 22:06
+//     **/
+//    @PostMapping("/insertAdm")
+//    public ResultData insertAdm(@RequestBody MappingProject mappingProject,@RequestParam Map map){
+//        Boolean aBoolean = mappingProjectService.insertAdm(mappingProject, map);
+//        if (aBoolean){
+//            return super.addSuccess(aBoolean);
+//        }else {
+//            return super.addFailed();
+//        }
+//    }
 
     /**
      * @Description: 项目管理  修改项目
@@ -214,7 +214,7 @@ public class MappingProjectController extends CommonController<MappingProject> {
      * @Date: 2020/7/17 10:46
      **/
     @PostMapping("/deleteAdm")
-    public ResultData deleteAdm(@RequestParam Long id){
+    public ResultData deleteAdm(@RequestParam("id") Long id){
         Integer integer = mappingProjectService.delectAdm(id);
         if (integer > 0){
             return super.deleteSuccess(integer);
@@ -229,8 +229,8 @@ public class MappingProjectController extends CommonController<MappingProject> {
      * @Date: 2020/7/17 11:04
      **/
     @PostMapping("/selectRem")
-    public ResultData selectRem(@RequestParam String projectType,@RequestParam Integer userid,
-                                @RequestParam Integer pageNumber, @RequestParam Integer pageSize){
+    public ResultData selectRem(@RequestParam("projectType") String projectType,@RequestParam("userid") Integer userid,
+                                @RequestParam("pageNumber") Integer pageNumber, @RequestParam("pageSize") Integer pageSize){
         PageInfo pageInfo = mappingProjectService.selectRem(projectType, userid, pageNumber, pageSize);
         if (pageInfo != null && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
@@ -278,8 +278,8 @@ public class MappingProjectController extends CommonController<MappingProject> {
      * @Date: 2020/7/18 15:07
      **/
     @PostMapping("/selectShow")
-    public ResultData selectShow(@RequestParam String projectType,@RequestParam String projectName,
-                                 @RequestParam String startDate ){
+    public ResultData selectShow(@RequestParam("projectType") String projectType,@RequestParam("projectName") String projectName,
+                                 @RequestParam("startDate") String startDate ){
         List<MappingProject> mappingProjects = mappingProjectService.selectShow(projectType, projectName, startDate);
         if (mappingProjects != null && !"".equals(mappingProjects)){
             return super.selectSuccess(mappingProjects);

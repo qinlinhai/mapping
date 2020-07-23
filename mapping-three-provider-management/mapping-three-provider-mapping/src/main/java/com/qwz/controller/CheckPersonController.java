@@ -36,8 +36,8 @@ public class CheckPersonController extends CommonController<CheckPerson> {
      * @Date: 2020/7/16 16:19
      **/
     @PostMapping("/selectCheckPerson")
-    public ResultData selectCheckPerson(@RequestParam double random,@RequestParam Integer pageNumber,
-                                        @RequestParam Integer pageSize){
+    public ResultData selectCheckPerson(@RequestParam("random") double random,@RequestParam("pageNumber") Integer pageNumber,
+                                        @RequestParam("pageSize") Integer pageSize){
         PageInfo pageInfo = checkPersonService.selectCheckPerson(random, pageNumber, pageSize);
         if (null != pageInfo && !"".equals(pageInfo)){
             return super.selectSuccess(pageInfo);
@@ -84,7 +84,7 @@ public class CheckPersonController extends CommonController<CheckPerson> {
      * @Date: 2020/7/16 16:57
      **/
     @PostMapping("/delectOneCheckPerson")
-    public ResultData delectOneCheckPerson(@RequestParam String id){
+    public ResultData delectOneCheckPerson(@RequestParam("id") String id){
         Integer integer = checkPersonService.delectCheckPerson(id);
         if (integer > 0){
             return super.deleteSuccess(integer);
@@ -99,7 +99,7 @@ public class CheckPersonController extends CommonController<CheckPerson> {
      * @Date: 2020/7/16 17:01
      **/
     @PostMapping("/delectListCheckPerson")
-    public ResultData delectListCheckPerson(@RequestParam String ids){
+    public ResultData delectListCheckPerson(@RequestParam("ids") String ids){
         return deleteByIds(ids);
     }
 }
