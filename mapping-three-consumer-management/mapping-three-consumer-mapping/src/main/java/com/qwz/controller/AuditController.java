@@ -52,7 +52,7 @@ public class AuditController {
      * 审核待修改审核
      **/
     @PostMapping("/updateUnitStatus")
-    public ResultData updateUnitStatus(@RequestBody Audit audit,@RequestParam("unitId") Long unitId,@RequestParam("auditStatus") Integer auditStatus){
+    public ResultData updateUnitStatus(Audit audit,@RequestParam("unitId") Long unitId,@RequestParam("auditStatus") Integer auditStatus){
         return iProjectService.updateUnitStatus(audit,unitId,auditStatus);
     }
     /**

@@ -65,9 +65,9 @@ public interface MappingProjectMapper extends Mapper<MappingProject> {
      * @author  qlh
      * @date   2020/7/16
      * @desc
-     * 查询 已经完成的项目
+     * 查询 已经完成的项目数据统计
      **/
-    @Select("select count(project_type) count,project_type type from t_mapping_project where status=3 GROUP BY project_type")
+    @Select("select count(project_type) value,CONCAT_WS('','已完成',project_type) name from t_mapping_project where status=3 GROUP BY project_type")
     List<Map> selectSuccess();
 
 
@@ -77,7 +77,7 @@ public interface MappingProjectMapper extends Mapper<MappingProject> {
      * @desc
      * 查询未完成的项目
      **/
-    @Select("select count(project_type) count,project_type type from t_mapping_project where status=2 GROUP BY project_type")
+    @Select("select count(project_type) value,CONCAT_WS('','未完成',project_type) name from t_mapping_project where status=2 GROUP BY project_type")
     List<Map> selectFailed();
 
     /**

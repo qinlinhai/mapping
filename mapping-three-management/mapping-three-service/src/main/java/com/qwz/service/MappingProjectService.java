@@ -97,20 +97,24 @@ public class MappingProjectService extends BaseService<MappingProject> {
      *
      * 查询 已完成 和未完成的 项目类型
      **/
-    public List<Map> selectPRojectByType(){
+    public List selectPRojectByType(){
         List<Map> successmaps = mappingProjectMapper.selectSuccess();
         List<Map> failedmaps= mappingProjectMapper.selectFailed();
-        List<Map> result=new ArrayList<Map>();
-        Map<Object, Object> map1 = new HashMap<Object, Object>();
-        Map<Object, Object> map2 = new HashMap<Object, Object>();
+        List result=new ArrayList<>();
         if(successmaps!= null && successmaps.size()>0){
-            map1.put("success",successmaps);
+            for (Map map:successmaps
+                 ) {
+                result.add(map);
+            }
         }
+
         if(failedmaps!=null && failedmaps.size()>0){
-            map2.put("failed",failedmaps);
+            for (Map map: failedmaps
+                 ) {
+                result.add(map);
+            }
         }
-        result.add(map1);
-        result.add(map2);
+
         return result;
     }
 

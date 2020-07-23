@@ -15,6 +15,7 @@ import java.util.Map;
  * @time: 2020/7/17 19:52
  */
 @RestController
+@RequestMapping("/unit")
 public class MappingUnitController{
 
     @Autowired

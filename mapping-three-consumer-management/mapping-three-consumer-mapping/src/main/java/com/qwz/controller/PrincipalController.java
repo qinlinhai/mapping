@@ -49,7 +49,7 @@ public class PrincipalController {
      * @desc 修改负责人信息
      **/
     @PostMapping("/updatePrincipal")
-    public ResultData updatePrincipal(@RequestBody Principal principal) {
+    public ResultData updatePrincipal(Principal principal) {
         return iProjectService.updatePrincipal(principal);
     }
 

@@ -21,7 +21,7 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
      * @desc
      * 根据资质等级分组查询单位
      **/
-    @Select("select count(qualification_level) levelCount,qualification_level level from t_mapping_unit GROUP BY qualification_level")
+    @Select("select count(qualification_level) value,qualification_level name from t_mapping_unit GROUP BY qualification_level")
     List<Map> selectQualification();
     /**
      * @author  qlh

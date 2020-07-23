@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @time: 2020/7/17 19:55
  */
 @RestController
+@RequestMapping("/project")
 public class MappingProjectController {
 
     @Autowired

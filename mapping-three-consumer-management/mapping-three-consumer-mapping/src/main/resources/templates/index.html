@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <style>
+        #left-main{
+            float: left;
+            width: 50%;
+            height: 450px;
+        }
+        #right-main{
+            float: left;
+            width: 50%;
+            height: 450px;
+        }
+    </style>
+</head>
+<body>
+<div id="left-main" >
+</div>
+<div id="right-main">
+
+</div>
+</body>
+<script src="static/js/jquery-1.8.3.min.js"></script>
+<script src="static/js/echarts.min.js"></script>
+<script>
+    $(function () {
+        //单位资质统计
+        $.ajax({
+            url:"/unit/selectQualification",
+            type:"get",
+            dataType:"json",
+            success:function (result) {
+                var myChart = echarts.init(document.getElementById('left-main'));
+                var da=result.data;
+                var names=new Array();
+                for (var i=0;i<da.length;i++){
+                    names[i]=da[i].name;
+                }
+                var option=option = {
+                    title: {
+                        text: '单位资质统计',
+                        subtext: '',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data: names,
+                    },
+                    series: [
+                        {
+                            name: '访问来源',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '60%'],
+                            data: da,
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                };
+                myChart.setOption(option);
+            }
+        })
+
+        //项目类型统计
+        $.ajax({
+            url:"/project/selectPRojectByType",
+            type:"get",
+            dataType:"json",
+            success:function (result) {
+                if(result!=null){
+                    var myChart = echarts.init(document.getElementById('right-main'));
+                    var da=result.data;
+                    var names=new Array();
+                    for (var i=0;i<da.length;i++){
+                        names[i]=da[i].name;
+                    }
+                    var option=option = {
+                        title: {
+                            text: '项目类型统计',
+                            subtext: '',
+                            left: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{a} <br/>{b} : {c} ({d}%)'
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            left: 'left',
+                            data:names,
+                        },
+                        series: [
+                            {
+                                name: '访问来源',
+                                type: 'pie',
+                                radius: '55%',
+                                center: ['50%', '60%'],
+                                data: da,
+                                emphasis: {
+                                    itemStyle: {
+                                        shadowBlur: 10,
+                                        shadowOffsetX: 0,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    myChart.setOption(option);
+                 }
+            }
+        })
+    })
+</script>
+</html>
